@@ -1,8 +1,8 @@
 export interface School {
   id: number;
-  name: string;
-  summary: string;
+  title: string;
+  publicSummary: string;
   status: string;
-  picture: string;
+  image: string;
   duration: number;
 }
