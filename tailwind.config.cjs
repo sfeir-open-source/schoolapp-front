@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        'lg-card': '25rem',
+        'sm-card': '50rem',
+      }
+    },
   },
   plugins: [],
 }
