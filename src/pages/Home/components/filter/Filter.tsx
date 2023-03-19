@@ -2,22 +2,16 @@ import { useState } from 'react';
 import PrimaryButton from '../../../../shared/components/PrimaryButton';
 import './Filter.scss';
 import SecondaryButton from '../../../../shared/components/SecondaryButton';
+import { useStatus } from '../../hooks/filter-status.hook';
+import { Status } from '../../../../shared/interfaces/filter-status.interface';
 
-export interface Status {
-    bgColor: string,
-    text: string,
-    isChecked: boolean
+type FilterProps = {
+  onStatusChange: (status: Status[]) => void;
 }
-export default function Filter() {
-  const [isShown, setShow] = useState<boolean>(false);
-  const [status, setStatus] = useState<Status[]>([
-    { bgColor: 'bg-green-200', text: 'active', isChecked: true },
-    { bgColor: 'bg-slate-200', text: 'abandoned', isChecked: false },
-    { bgColor: 'bg-orange-200', text: 'wish', isChecked: false },
-    { bgColor: 'bg-blue-200', text: 'proposal', isChecked: false },
-    { bgColor: 'bg-red-200', text: 'rejected', isChecked: false },
-  ]);
 
+export default function Filter({onStatusChange}: FilterProps) {
+  const [isShown, setShow] = useState<boolean>(false);
+  const [status, setStatus] = useStatus();
 
   const toggleStatus = (s: Status) => {
     let newStatus = [...status];
@@ -29,12 +23,11 @@ export default function Filter() {
       newStatus[idActiveStatus] = {...newStatus[idActiveStatus], isChecked: true};
     }
     setStatus(newStatus);
+    onStatusChange(newStatus);
   }
 
-  const toggle = () => {
-    console.log('toggle');
-    setShow(!isShown);
-  };
+  const toggle = () => setShow(!isShown);
+
   return (
     <div className='gap-4' style={{ display: 'grid', gridTemplateColumns: '1fr 14rem' }}>
       <form>
@@ -48,7 +41,7 @@ export default function Filter() {
               stroke='currentColor'
               viewBox='0 0 24 24'
               xmlns='http://www.w3.org/2000/svg'>
-              <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
+              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'></path>
             </svg>
           </div>
           <input
@@ -68,12 +61,12 @@ export default function Filter() {
           <div className='filter-content z-10 w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700'>
             <ul className='space-y-2 text-sm'>
               {status.map((s) => (
-                <li className='flex items-center gap-1'>
+                <li key={s.text} className='flex items-center gap-1'>
                   <input
                     id='apple'
                     type='checkbox'
                     checked={s.isChecked}
-                    onClick={() => toggleStatus(s)}
+                    onChange={() => toggleStatus(s)}
                     value=''
                     className='text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700'
                   />
