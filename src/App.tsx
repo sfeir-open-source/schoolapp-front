@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Home from './Home/Home';
-import Login from './Login/Login';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
 import { Routes, Route } from 'react-router-dom';
 
 export default function App() {

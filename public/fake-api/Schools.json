@@ -3,7 +3,7 @@
     "id": 1,
     "title": "NextJS",
     "publicpublicSummary": "Ped on rolr-skt injured in collision w 2/3-whl mv in traf",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1585092043239-ca829f99c3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.53
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "title": "NextJS",
     "publicSummary": "Disp fx of low epiphy (separation) of l femr, 7thG",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.7
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "title": "Rxjs",
     "publicSummary": "Sprain of oth parts of lumbar spine and pelvis, subs encntr",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.81
   },
@@ -59,7 +59,7 @@
     "id": 8,
     "title": "Qwik",
     "publicSummary": "Nondisp oblique fx shaft of humer, left arm, init for opn fx",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.9
   },
@@ -91,7 +91,7 @@
     "id": 12,
     "title": "Qwik",
     "publicSummary": "Fibrosis due to cardiac prosth dev/grft, subs",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.35
   },
@@ -99,7 +99,7 @@
     "id": 13,
     "title": "Github Actions",
     "publicSummary": "Secondary parkinsonism",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.48
   },
@@ -139,7 +139,7 @@
     "id": 18,
     "title": "React",
     "publicSummary": "Anthrax",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.25
   },
@@ -147,7 +147,7 @@
     "id": 19,
     "title": "Angular",
     "publicSummary": "Injury of ulnar nerve at forearm level, right arm",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.59
   },
@@ -203,7 +203,7 @@
     "id": 26,
     "title": "GraphQL",
     "publicSummary": "Cognitive social or emo def following ntrm intcrbl hemor",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.01
   },
@@ -363,7 +363,7 @@
     "id": 46,
     "title": "NuxtJS",
     "publicSummary": "Nondisp fx of epiphy (separation) (upper) of l femr, 7thN",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.62
   },
@@ -387,7 +387,7 @@
     "id": 49,
     "title": "GraphQL",
     "publicSummary": "Mech compl of int fix of right femur, sequela",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1585092043239-ca829f99c3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.92
   },
@@ -411,7 +411,7 @@
     "id": 52,
     "title": "Qwik",
     "publicSummary": "Other disorders of lens",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.85
   },
@@ -435,7 +435,7 @@
     "id": 55,
     "title": "GraphQL",
     "publicSummary": "Subluxation of lens, right eye",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80",
     "duration": 1.81
   },
@@ -467,7 +467,7 @@
     "id": 59,
     "title": "Rxjs",
     "publicSummary": "Separation of muscle (nontraumatic), shoulder",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.59
   },
@@ -483,7 +483,7 @@
     "id": 61,
     "title": "Vue JS",
     "publicSummary": "Glaucoma secondary to drugs",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1585092043239-ca829f99c3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.82
   },
@@ -491,7 +491,7 @@
     "id": 62,
     "title": "Github Actions",
     "publicSummary": "Driver of pk-up/van injured in clsn w unsp mv nontraf, subs",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.43
   },
@@ -531,7 +531,7 @@
     "id": 67,
     "title": "GraphQL",
     "publicSummary": "Nondisp fx of ant pro of r calcaneus, subs for fx w malunion",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1585092043239-ca829f99c3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.98
   },
@@ -571,7 +571,7 @@
     "id": 72,
     "title": "Vue JS",
     "publicSummary": "Coma scale, best motor response, flexion withdrawal, EMR",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1497211419994-14ae40a3c7a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.32
   },
@@ -579,7 +579,7 @@
     "id": 73,
     "title": "Github Actions",
     "publicSummary": "Encounter for exam and observation following work accident",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 0.7
   },
@@ -723,7 +723,7 @@
     "id": 91,
     "title": "NuxtJS",
     "publicSummary": "Oth fracture of T11-T12 vertebra, subs for fx w delay heal",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.98
   },
@@ -795,7 +795,7 @@
     "id": 100,
     "title": "Rxjs",
     "publicSummary": "Arnold-Chiari syndrome with hydrocephalus",
-    "status": "abandonned",
+    "status": "abandoned",
     "image": "https://images.unsplash.com/photo-1489189642444-0709966aec44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "duration": 1.15
   }

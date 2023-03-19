@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "./components/Header";
-import Schools from "./components/Schools";
+import Header from "./components/header/Header";
+import Schools from "./components/schools-list/Schools";
+import Filter from "./components/filter/Filter";
 
 export default function Home() {
 

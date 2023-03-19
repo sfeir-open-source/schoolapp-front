@@ -1,14 +1,17 @@
 import { useQuery } from 'react-query';
-import { School } from '../../../shared/interfaces/schools.interface';
+import { School } from '../../../../shared/interfaces/schools.interface';
+import Filter from '../filter/Filter';
+import { useSchools } from '../../hooks/schools.hook';
 
 export default function Schools() {
-  const { isLoading, error, data } = useQuery<boolean, Error, School[]>('repoData', () => fetch('/fake-api/Schools.json').then((res) => res.json()));
+
+  const {isLoading, error, data} = useSchools();
 
   const getStatusBackgroundColor = (status: string) => {
     if (status === 'active') {
       return 'bg-green-200';
     }
-    if (status === 'abandonned') {
+    if (status === 'abandoned') {
       return 'bg-slate-200';
     }
     if (status === 'rejected') {
@@ -28,8 +31,8 @@ export default function Schools() {
 
   if (data)
     return (
-      <div>
-        <div className='h-20'></div>
+      <div className='flex flex-col gap-4'>
+        <Filter />
         <div className='grid items-center gap-4 px-14 sm:grid-cols-2 md:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5'>
           {data.map((school) => (
             <div className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border border-gray-200  bg-white lg:max-h-lg-card  lg:max-w-xs'>

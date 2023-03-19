@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PrimaryButton from '../../../../shared/components/PrimaryButton';
 
 export default function Header() {
   return (
@@ -10,8 +11,8 @@ export default function Header() {
           <li className='text-sm font-semibold leading-6 text-gray-900'>Features</li>
           <li className='text-sm font-semibold leading-6 text-gray-900'>Profile</li>
         </ul>
-        <Link className='text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:scale-105 font-medium rounded-lg text-sm px-5 py-1.5 text-center' to='/'>
-          Sign Out
+        <Link to='/'>
+          <PrimaryButton text={'Sign Out'}/>
         </Link>
       </nav>
     </header>
