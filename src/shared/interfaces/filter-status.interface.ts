@@ -1,5 +1,5 @@
-export interface Status {
-    bgColor: string,
-    text: string,
-    isChecked: boolean
+export type Status = {
+  bgColor: string
+  text: string
+  isChecked: boolean
 }

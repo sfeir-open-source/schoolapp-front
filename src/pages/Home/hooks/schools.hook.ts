@@ -1,11 +1,13 @@
-import { useQuery } from 'react-query';
-import { School } from '../../../shared/interfaces/schools.interface';
+import { useQuery } from 'react-query'
+import type { School } from '../../../shared/interfaces/schools.interface'
 
+const BACKEND_URI: string = import.meta.env.VITE_BACKEND_URI
 export const useGetSchools = (status: string[]) =>
   useQuery<School[], Error>({
-    queryFn: () => fetch('/fake-api/Schools.json').then((res) => res.json()),
+    queryFn: () => fetch(`${BACKEND_URI}/schools`).then(res => res.json()),
     queryKey: 'school',
-    select: (schools) => filterSchoolsByStatus(schools, status),
-  });
+    select: schools => filterSchoolsByStatus(schools, status),
+  })
 
-const filterSchoolsByStatus = (schools: School[], status: string[]) => schools.filter((school) => status.includes(school.status));
+const filterSchoolsByStatus = (schools: School[], status: string[]) =>
+  schools.filter(school => status.includes(school.status))
