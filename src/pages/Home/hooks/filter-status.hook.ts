@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import type { Status } from '../../../shared/interfaces/filter-status.interface'
+import { useState } from 'react';
+import type { Status } from '../../../shared/interfaces/filter-status.interface';
 
 export const useStatus = () =>
   useState<Status[]>([
@@ -8,4 +8,4 @@ export const useStatus = () =>
     { bgColor: 'bg-orange-200', text: 'wish', isChecked: false },
     { bgColor: 'bg-blue-200', text: 'proposal', isChecked: false },
     { bgColor: 'bg-red-200', text: 'rejected', isChecked: false },
-  ])
+  ]);

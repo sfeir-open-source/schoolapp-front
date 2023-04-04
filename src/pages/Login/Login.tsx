@@ -1,5 +1,5 @@
-import GoogleLoginButton from './components/GoogleLoginButton'
-import loginSvg from './../../assets/login.svg'
+import GoogleLoginButton from './components/GoogleLoginButton';
+import loginSvg from './../../assets/login.svg';
 
 export default function Login() {
   return (
@@ -14,5 +14,5 @@ export default function Login() {
         <img src={loginSvg} />
       </div>
     </div>
-  )
+  );
 }

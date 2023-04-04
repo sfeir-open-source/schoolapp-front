@@ -1,6 +1,6 @@
-import Home from './pages/Home/Home'
-import Login from './pages/Login/Login'
-import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
   return (
@@ -10,5 +10,5 @@ export default function App() {
         <Route path='/home' element={<Home />}></Route>
       </Routes>
     </div>
-  )
+  );
 }

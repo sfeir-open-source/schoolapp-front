@@ -1,15 +1,15 @@
-import { getStatusBackgroundColor } from '../../../../shared/helpers/status-background-color'
-import type { School } from '../../../../shared/interfaces/schools.interface'
+import { getStatusBackgroundColor } from '../../../../shared/helpers/status-background-color';
+import type { School } from '../../../../shared/interfaces/schools.interface';
 
 type SchoolsProps = {
-  schools: School[] | undefined
-  error: Error | null
-  isLoading: boolean
-}
+  schools: School[] | undefined;
+  error: Error | null;
+  isLoading: boolean;
+};
 export default function Schools({ schools, error, isLoading }: SchoolsProps) {
-  if (isLoading) return <div>Loading ..</div>
+  if (isLoading) return <div>Loading ..</div>;
 
-  if (error) return <div>An error has occurred: {error.message};</div>
+  if (error) return <div>An error has occurred: {error.message};</div>;
 
   if (schools)
     return (
@@ -46,7 +46,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
           </div>
         ))}
       </div>
-    )
+    );
 
-  return <div></div>
+  return <div></div>;
 }

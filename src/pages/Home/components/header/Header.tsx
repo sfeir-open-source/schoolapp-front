@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import PrimaryButton from '../../../../shared/components/PrimaryButton'
+import { Link } from 'react-router-dom';
+import PrimaryButton from '../../../../shared/components/PrimaryButton';
 
 export default function Header() {
   return (
@@ -24,5 +24,5 @@ export default function Header() {
         </Link>
       </nav>
     </header>
-  )
+  );
 }

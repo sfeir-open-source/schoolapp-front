@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import PrimaryButton from '../../../../shared/components/PrimaryButton'
-import './Filter.scss'
-import SecondaryButton from '../../../../shared/components/SecondaryButton'
-import { useStatus } from '../../hooks/filter-status.hook'
-import type { Status } from '../../../../shared/interfaces/filter-status.interface'
+import { useState } from 'react';
+import PrimaryButton from '../../../../shared/components/PrimaryButton';
+import './Filter.scss';
+import SecondaryButton from '../../../../shared/components/SecondaryButton';
+import { useStatus } from '../../hooks/filter-status.hook';
+import type { Status } from '../../../../shared/interfaces/filter-status.interface';
 
 type FilterProps = {
-  onStatusChange: (status: Status[]) => void
-}
+  onStatusChange: (status: Status[]) => void;
+};
 
 export default function Filter({ onStatusChange }: FilterProps) {
-  const [isShown, setShow] = useState<boolean>(false)
-  const [status, setStatus] = useStatus()
+  const [isShown, setShow] = useState<boolean>(false);
+  const [status, setStatus] = useStatus();
 
   const toggleStatus = (s: Status) => {
-    const newStatus = [...status]
-    const id = newStatus.indexOf(s)
-    newStatus[id] = { ...s, isChecked: !s.isChecked }
-    const notChecked = newStatus.some(s => s.isChecked)
+    const newStatus = [...status];
+    const id = newStatus.indexOf(s);
+    newStatus[id] = { ...s, isChecked: !s.isChecked };
+    const notChecked = newStatus.some(s => s.isChecked);
     if (notChecked) {
-      const idActiveStatus = newStatus.findIndex(s => s.text === 'ACTIVE')
+      const idActiveStatus = newStatus.findIndex(s => s.text === 'ACTIVE');
       newStatus[idActiveStatus] = {
         ...newStatus[idActiveStatus],
         isChecked: true,
-      }
+      };
     }
-    setStatus(newStatus)
-    onStatusChange(newStatus)
-  }
+    setStatus(newStatus);
+    onStatusChange(newStatus);
+  };
 
-  const toggle = () => setShow(!isShown)
+  const toggle = () => setShow(!isShown);
 
   return (
     <div
@@ -97,5 +97,5 @@ export default function Filter({ onStatusChange }: FilterProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
