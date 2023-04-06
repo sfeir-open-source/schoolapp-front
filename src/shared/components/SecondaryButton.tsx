@@ -1,9 +1,9 @@
 import type { MouseEventHandler } from 'react';
 
-type PrimaryButtonProps = {
+interface PrimaryButtonProps {
   text: string;
   onClick: MouseEventHandler<HTMLButtonElement>;
-};
+}
 
 export default function SecondaryButton({ text, onClick }: PrimaryButtonProps) {
   return (

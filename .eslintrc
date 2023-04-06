@@ -19,7 +19,5 @@
     "extraFileExtensions": [".config.ts"]
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    
-  }
+  "rules": {}
 }
