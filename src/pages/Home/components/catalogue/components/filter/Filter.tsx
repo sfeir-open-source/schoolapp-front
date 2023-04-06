@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import PrimaryButton from '../../../../shared/components/PrimaryButton';
+import PrimaryButton from '../../../../../../shared/components/PrimaryButton';
 import './Filter.scss';
-import SecondaryButton from '../../../../shared/components/SecondaryButton';
-import { useStatus } from '../../hooks/filter-status.hook';
-import type { Status } from '../../../../shared/interfaces/filter-status.interface';
+import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
+import { useStatus } from '../../../../hooks/filter-status.hook';
+import type { Status } from '../../../../../../shared/interfaces/filter-status.interface';
 
-type FilterProps = {
+interface FilterProps {
   onStatusChange: (status: Status[]) => void;
-};
+}
 
 export default function Filter({ onStatusChange }: FilterProps) {
   const [isShown, setShow] = useState<boolean>(false);

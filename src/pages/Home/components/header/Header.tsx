@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../../../shared/components/PrimaryButton';
+import { useAuth } from '../../../../shared/components/GoogleAuth';
 
 export default function Header() {
+  const { logout } = useAuth();
+
   return (
     <header>
       <nav className='flex items-center justify-between'>
@@ -19,9 +22,7 @@ export default function Header() {
             Profile
           </li>
         </ul>
-        <Link to='/'>
-          <PrimaryButton text={'Sign Out'} />
-        </Link>
+        <PrimaryButton text={'Sign Out'} onClick={() => logout()} />
       </nav>
     </header>
   );

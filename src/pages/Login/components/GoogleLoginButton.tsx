@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import type { CredentialResponse } from 'google-one-tap';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import { GoogleUser, useAuth } from '../../../shared/components/GoogleAuth';
 
 export default function GoogleLoginButton() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   useEffect(() => {
     window.google.accounts.id.initialize({
@@ -20,9 +22,8 @@ export default function GoogleLoginButton() {
   });
 
   const handleCredentialResponse = (response: CredentialResponse) => {
-    const userObject = jwt_decode(response.credential);
-    console.log('user decode :', userObject);
-    navigate('/home');
+    const userObject = jwt_decode(response.credential) as GoogleUser;
+    login(userObject).then(() => console.log('handleCredentialResponse'));
   };
   return <div id='google-login-button'></div>;
 }
