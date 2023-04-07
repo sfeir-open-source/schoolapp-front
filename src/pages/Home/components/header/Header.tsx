@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
 import PrimaryButton from '../../../../shared/components/PrimaryButton';
-import { useAuth } from '../../../../shared/components/GoogleAuth';
+import { useAuth } from '../../../../core/authentification/auth.hook';
 
 export default function Header() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
 
   return (
     <header>
@@ -22,7 +21,12 @@ export default function Header() {
             Profile
           </li>
         </ul>
-        <PrimaryButton text={'Sign Out'} onClick={() => logout()} />
+        <div className='flex items-center gap-4'>
+          {/* <div>
+            <div style={'border-radius: 1rem;'}><img src={user?.picture}/></div>
+          </div> */}
+          <PrimaryButton text={'Sign Out'} onClick={() => logout()} />
+        </div>
       </nav>
     </header>
   );

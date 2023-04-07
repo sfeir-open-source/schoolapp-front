@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import type { CredentialResponse } from 'google-one-tap';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import { GoogleUser, useAuth } from '../../../shared/components/GoogleAuth';
+import { useAuth } from '../../../core/authentification/auth.hook';
+import { GoogleUser } from '../../../shared/interfaces/google-user';
+import { useLocalStorage } from '../../../shared/hooks/local-storage.hook';
 
 export default function GoogleLoginButton() {
   const navigate = useNavigate();
@@ -23,7 +25,9 @@ export default function GoogleLoginButton() {
 
   const handleCredentialResponse = (response: CredentialResponse) => {
     const userObject = jwt_decode(response.credential) as GoogleUser;
-    login(userObject).then(() => console.log('handleCredentialResponse'));
+    login(userObject).then(() => {
+      navigate('/catalogue');
+    });
   };
   return <div id='google-login-button'></div>;
 }

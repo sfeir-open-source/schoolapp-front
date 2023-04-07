@@ -3,42 +3,20 @@ import Home from './pages/Home/Home';
 import { Catalogue } from './pages/Home/components/catalogue/Catalogue';
 import Login from './pages/Login/Login';
 import { Routes, Route } from 'react-router-dom';
-import { AuthProvider, ProtectedRoute } from './shared/components/GoogleAuth';
+import { ProtectedRoutes } from './shared/components/ProtectedRoute';
 
 export default function App() {
   return (
-    <AuthProvider>
-      <div className='h-full w-full'>
-        <Routes>
-          <Route path='/' element={<Login />}></Route>
-          <Route
-            path='/catalogue'
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          >
-            <Route
-              path='/catalogue/:id'
-              element={
-                <ProtectedRoute>
-                  <CatalogueDetails />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path='/catalogue'
-              element={
-                <ProtectedRoute>
-                  <Catalogue />
-                </ProtectedRoute>
-              }
-            ></Route>
+    <div className='h-full w-full'>
+      <Routes>
+        <Route path='/' element={<Login />}></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path='/catalogue' element={<Home />}>
+            <Route path='/catalogue/:id' element={<CatalogueDetails />}></Route>
+            <Route path='/catalogue' element={<Catalogue />}></Route>
           </Route>
-          <Route path='/' element={<Login />}></Route>
-        </Routes>
-      </div>
-    </AuthProvider>
+        </Route>
+      </Routes>
+    </div>
   );
 }
