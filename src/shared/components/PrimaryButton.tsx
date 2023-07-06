@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 
 interface PrimaryButtonProps {
   text: string;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function PrimaryButton({ text, onClick }: PrimaryButtonProps) {

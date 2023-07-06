@@ -25,6 +25,7 @@ export default function GoogleLoginButton() {
 
   const handleCredentialResponse = (response: CredentialResponse) => {
     const userObject = jwt_decode(response.credential) as GoogleUser;
+    console.log({ userObject, response });
     login(userObject).then(() => {
       navigate('/catalogue');
     });
