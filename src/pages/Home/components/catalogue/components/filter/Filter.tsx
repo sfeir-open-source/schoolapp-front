@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PrimaryButton from '../../../../../../shared/components/PrimaryButton';
+import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
 import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
 import { useStatus } from '../../../../hooks/filter-status.hook';
@@ -7,11 +7,11 @@ import type { Status } from '../../../../../../shared/interfaces/filter-status.i
 
 interface FilterProps {
   onStatusChange: (status: Status[]) => void;
+  status: Status[];
 }
 
-export default function Filter({ onStatusChange }: FilterProps) {
+export default function Filter({ onStatusChange, status }: FilterProps) {
   const [isShown, setShow] = useState<boolean>(false);
-  const [status, setStatus] = useStatus();
 
   const toggleStatus = (s: Status) => {
     const newStatus = [...status];
@@ -25,18 +25,14 @@ export default function Filter({ onStatusChange }: FilterProps) {
         isChecked: true,
       };
     }
-    setStatus(newStatus);
     onStatusChange(newStatus);
   };
 
   const toggle = () => setShow(!isShown);
 
   return (
-    <div
-      className='gap-4'
-      style={{ display: 'grid', gridTemplateColumns: '1fr 14rem' }}
-    >
-      <form>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 14rem' }}>
+      <form className='mx-auto'>
         <label className='sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white'>
           Search
         </label>
@@ -61,28 +57,28 @@ export default function Filter({ onStatusChange }: FilterProps) {
           <input
             type='search'
             id='default-search'
-            className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
+            className='block w-full rounded-lg border border-gray-300 bg-gray-50 px-5 py-1.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
             placeholder='Search a School ...'
             required
           ></input>
-          <div className='absolute right-2.5 bottom-2.5'>
-            <PrimaryButton text='Search' />
-          </div>
         </div>
       </form>
-      <div className='flex items-center justify-center p-4'>
-        <SecondaryButton onClick={toggle} text='Filter by status' />
+      <div className='flex items-center justify-start'>
+        <SecondaryButton onClick={toggle}>
+          <AiFillFilter />
+        </SecondaryButton>
         {isShown && (
           <div className='filter-content z-10 w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700'>
             <ul className='space-y-2 text-sm'>
               {status.map(s => (
-                <li key={s.text} className='flex items-center gap-1'>
+                <li key={s.text} className='flex items-center gap-1' dir='rtl'>
                   <input
                     id='apple'
                     type='checkbox'
                     checked={s.isChecked}
                     onChange={() => toggleStatus(s)}
                     value=''
+                    dir='rtl'
                     className='text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700'
                   />
                   <label
