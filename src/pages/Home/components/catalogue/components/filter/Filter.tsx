@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
 import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
-import { useStatus } from '../../../../hooks/filter-status.hook';
 import type { Status } from '../../../../../../shared/interfaces/filter-status.interface';
 
 interface FilterProps {
@@ -19,7 +18,7 @@ export default function Filter({ onStatusChange, status }: FilterProps) {
     newStatus[id] = { ...s, isChecked: !s.isChecked };
     const notChecked = newStatus.some(s => s.isChecked);
     if (notChecked) {
-      const idActiveStatus = newStatus.findIndex(s => s.text === 'ACTIVE');
+      const idActiveStatus = newStatus.findIndex(s => s.type === 'active');
       newStatus[idActiveStatus] = {
         ...newStatus[idActiveStatus],
         isChecked: true,
@@ -71,7 +70,7 @@ export default function Filter({ onStatusChange, status }: FilterProps) {
           <div className='filter-content z-10 w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700'>
             <ul className='space-y-2 text-sm'>
               {status.map(s => (
-                <li key={s.text} className='flex items-center gap-1' dir='rtl'>
+                <li key={s.type} className='flex items-center gap-1' dir='rtl'>
                   <input
                     id='apple'
                     type='checkbox'
@@ -84,7 +83,7 @@ export default function Filter({ onStatusChange, status }: FilterProps) {
                   <label
                     className={`rounded-lg py-1 px-3  text-sm font-medium ${s.bgColor}`}
                   >
-                    {s.text}
+                    {s.type}
                   </label>
                 </li>
               ))}

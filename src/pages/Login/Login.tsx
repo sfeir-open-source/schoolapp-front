@@ -11,7 +11,7 @@ export default function Login() {
         <h3 className='bg-gradient-to-r from-cyan-500 to-blue-500/50 bg-clip-text text-5xl font-extrabold text-transparent'>
           Login Page
         </h3>
-        <img src={loginSvg} />
+        <img src={loginSvg} alt={`login_image`} />
       </div>
     </div>
   );

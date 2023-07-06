@@ -1,5 +1,12 @@
 export interface Status {
   bgColor: string;
-  text: string;
+  type: StatusType;
   isChecked: boolean;
 }
+
+export type StatusType =
+  | 'active'
+  | 'abandoned'
+  | 'wish'
+  | 'proposal'
+  | 'rejected';

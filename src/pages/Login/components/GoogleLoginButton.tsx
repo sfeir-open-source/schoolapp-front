@@ -21,7 +21,7 @@ export default function GoogleLoginButton() {
       { theme: 'outline' }
     );
     window.google.accounts.id.prompt();
-  });
+  }, [login]);
 
   const handleCredentialResponse = (response: CredentialResponse) => {
     const userObject = jwt_decode(response.credential) as GoogleUser;

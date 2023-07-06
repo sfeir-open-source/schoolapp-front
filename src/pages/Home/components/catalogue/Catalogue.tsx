@@ -11,7 +11,7 @@ export function Catalogue() {
   const { data, error, isLoading } = useGetSchools(selectedStatus);
 
   const handleStatusChange = (status: Status[]) => {
-    const selectedStatus = status.filter(s => s.isChecked).map(s => s.text);
+    const selectedStatus = status.filter(s => s.isChecked).map(s => s.type);
     setStatus(status);
     setSelectedStatus(selectedStatus);
   };
