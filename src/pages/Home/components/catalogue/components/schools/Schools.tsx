@@ -29,7 +29,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
             <img
               className='h-full w-full rounded-t-lg'
               src={school.image}
-              alt={school.image}
+              alt={`${school.title}_image`}
             />
             <div className='flex flex-col gap-1 p-4'>
               <div className='flex h-full flex-col gap-1'>
