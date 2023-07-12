@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../core/authentification/auth.hook';
 import { GoogleUser } from '../../../shared/interfaces/google-user';
 import { useLocalStorage } from '../../../shared/hooks/local-storage.hook';
+import { useCookies } from 'react-cookie';
 
 export default function GoogleLoginButton() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [cookies, setCookie] = useCookies(['jwt', 'test']);
 
   useEffect(() => {
     window.google.accounts.id.initialize({
@@ -27,6 +29,7 @@ export default function GoogleLoginButton() {
     const userObject = jwt_decode(response.credential) as GoogleUser;
     console.log({ userObject, response });
     login(userObject).then(() => {
+      setCookie('jwt', response.credential, { path: '/' });
       navigate('/catalogue');
     });
   };

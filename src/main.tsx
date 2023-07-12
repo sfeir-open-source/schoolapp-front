@@ -4,6 +4,7 @@ import './index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthProvider } from './core/authentification/AuthProvider';
+import { CookiesProvider } from 'react-cookie';
 
 const queryClient = new QueryClient();
 
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
       </AuthProvider>
     </BrowserRouter>
   </QueryClientProvider>
