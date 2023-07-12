@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import type { School } from '../../../../../../shared/interfaces/schools.interface';
 
@@ -8,11 +8,6 @@ interface SchoolsProps {
   isLoading: boolean;
 }
 export default function Schools({ schools, error, isLoading }: SchoolsProps) {
-  const navigate = useNavigate();
-
-  const openCatalogueDetails = (school: School) =>
-    navigate(`/catalogue/${school.id}`);
-
   if (isLoading) return <div>Loading ..</div>;
 
   if (error) return <div>An error has occurred: {error.message};</div>;
@@ -21,8 +16,8 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
     return (
       <div className='grid items-center gap-4 px-14 sm:grid-cols-2 md:grid-cols-3 md:px-0 lg:grid-cols-4 xl:grid-cols-5'>
         {schools.map(school => (
-          <div
-            onClick={() => openCatalogueDetails(school)}
+          <Link
+            to={`/catalogue/${school.id}`}
             key={school.id}
             className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border border-gray-200  bg-white lg:max-h-lg-card  lg:max-w-xs'
           >
@@ -50,7 +45,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     );
