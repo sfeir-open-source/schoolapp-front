@@ -2,29 +2,26 @@ import { useState } from 'react';
 import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
 import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
-import type { Status } from '../../../../../../shared/interfaces/filter-status.interface';
+import type { StatusType } from '../../../../../../shared/interfaces/filter-status.interface';
 
 interface FilterProps {
-  onStatusChange: (status: Status[]) => void;
-  status: Status[];
+  onStatusChange: (status: string[]) => void;
+  status: Record<StatusType, string>;
+  selectedStatus: string[];
 }
 
-export default function Filter({ onStatusChange, status }: FilterProps) {
+export default function Filter({
+  onStatusChange,
+  status,
+  selectedStatus,
+}: FilterProps) {
   const [isShown, setShow] = useState<boolean>(false);
 
-  const toggleStatus = (s: Status) => {
-    const newStatus = [...status];
-    const id = newStatus.indexOf(s);
-    newStatus[id] = { ...s, isChecked: !s.isChecked };
-    const notChecked = newStatus.some(s => s.isChecked);
-    if (notChecked) {
-      const idActiveStatus = newStatus.findIndex(s => s.type === 'active');
-      newStatus[idActiveStatus] = {
-        ...newStatus[idActiveStatus],
-        isChecked: true,
-      };
-    }
-    onStatusChange(newStatus);
+  const toggleStatus = (statusType: string) => {
+    const updatedSelectedStatus = selectedStatus.includes(statusType)
+      ? selectedStatus.filter(type => type !== statusType)
+      : [...selectedStatus, statusType];
+    onStatusChange(updatedSelectedStatus);
   };
 
   const toggle = () => setShow(!isShown);
@@ -69,21 +66,25 @@ export default function Filter({ onStatusChange, status }: FilterProps) {
         {isShown && (
           <div className='filter-content z-10 w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700'>
             <ul className='space-y-2 text-sm'>
-              {status.map(s => (
-                <li key={s.type} className='flex items-center gap-1' dir='rtl'>
+              {Object.entries(status).map(([statusType, className]) => (
+                <li
+                  key={statusType}
+                  className='flex items-center gap-1'
+                  dir='rtl'
+                >
                   <input
                     id='apple'
                     type='checkbox'
-                    checked={s.isChecked}
-                    onChange={() => toggleStatus(s)}
+                    checked={selectedStatus.includes(statusType)}
+                    onChange={() => toggleStatus(statusType)}
                     value=''
                     dir='rtl'
                     className='text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700'
                   />
                   <label
-                    className={`rounded-lg py-1 px-3  text-sm font-medium ${s.bgColor}`}
+                    className={`rounded-lg py-1 px-3  text-sm font-medium ${className}`}
                   >
-                    {s.type}
+                    {statusType}
                   </label>
                 </li>
               ))}
