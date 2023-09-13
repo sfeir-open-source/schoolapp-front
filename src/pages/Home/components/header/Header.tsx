@@ -5,7 +5,7 @@ export default function Header() {
   const { logout, user } = useAuth();
 
   return (
-    <header>
+    <header className='fixed z-50 w-full bg-white/20 p-4 backdrop-blur-sm'>
       <nav className='flex items-center justify-between'>
         <div className='bg-gradient-to-r from-cyan-500 to-blue-500/50 bg-clip-text text-2xl font-extrabold text-transparent'>
           SchoolApp
@@ -22,9 +22,12 @@ export default function Header() {
           </li>
         </ul>
         <div className='flex items-center gap-4'>
-          {/* <div>
-            <div style={'border-radius: 1rem;'}><img src={user?.picture}/></div>
-          </div> */}
+          <div className='flex items-center gap-2'>
+            <span>{user?.name}</span>
+            <div>
+              <img className='w-7 rounded-full' src={user?.picture} />
+            </div>
+          </div>
           <PrimaryButton text={'Sign Out'} onClick={() => logout()} />
         </div>
       </nav>

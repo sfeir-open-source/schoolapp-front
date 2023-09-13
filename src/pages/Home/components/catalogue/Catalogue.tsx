@@ -14,7 +14,7 @@ export function Catalogue() {
   };
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='mt-16 flex flex-col gap-4 p-4'>
       <Filter
         onStatusChange={handleStatusChange}
         status={recordStatus}
