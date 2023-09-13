@@ -19,7 +19,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
           <Link
             to={`/catalogue/${school.id}`}
             key={school.id}
-            className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border border-gray-200  bg-white lg:max-h-lg-card  lg:max-w-xs'
+            className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
           >
             <img
               className='h-full w-full rounded-t-lg'
