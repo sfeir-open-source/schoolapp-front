@@ -27,8 +27,8 @@ export default function Filter({
   const toggle = () => setShow(!isShown);
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 14rem' }}>
-      <form className='mx-auto'>
+    <div className='flex w-full items-center justify-center gap-4'>
+      <form>
         <label className='sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white'>
           Search
         </label>
@@ -59,19 +59,20 @@ export default function Filter({
           ></input>
         </div>
       </form>
-      <div className='flex items-center justify-start'>
+      <div className='relative flex items-center justify-start'>
         <SecondaryButton onClick={toggle}>
           <AiFillFilter />
         </SecondaryButton>
         {isShown && (
-          <div className='filter-content z-10 w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700'>
-            <ul className='space-y-2 text-sm'>
+          <div className='filter-content absolute top-[2rem] left-0 left-1/2 z-10 w-fit -translate-x-1/2 rounded-lg border border-gray-300 bg-white p-3 shadow-lg dark:bg-gray-700'>
+            <ul className='flex flex-col gap-2 text-sm'>
               {Object.entries(status).map(([statusType, className]) => (
-                <li
-                  key={statusType}
-                  className='flex items-center gap-1'
-                  dir='rtl'
-                >
+                <li key={statusType} className='li' dir='rtl'>
+                  <label
+                    className={`leading-sm flex w-fit items-center justify-start rounded-full px-3 py-1 text-xs font-bold uppercase ${className}`}
+                  >
+                    {statusType}
+                  </label>
                   <input
                     id='apple'
                     type='checkbox'
@@ -81,11 +82,6 @@ export default function Filter({
                     dir='rtl'
                     className='text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700'
                   />
-                  <label
-                    className={`leading-sm inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase ${className}`}
-                  >
-                    {statusType}
-                  </label>
                 </li>
               ))}
             </ul>

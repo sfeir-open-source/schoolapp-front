@@ -1,4 +1,7 @@
-.filter-content {
-  position: absolute;
-  top: 9rem;
+.li {
+    display: grid;
+    grid-template-columns: 1fr 1rem;
+    gap: 0.5rem;
+    justify-items: end;
+    align-items: center;
 }
