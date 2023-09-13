@@ -82,7 +82,7 @@ export default function Filter({
                     className='text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 h-4 w-4 rounded border-gray-300 bg-gray-100 focus:ring-2 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700'
                   />
                   <label
-                    className={`rounded-lg py-1 px-3  text-sm font-medium ${className}`}
+                    className={`leading-sm inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase ${className}`}
                   >
                     {statusType}
                   </label>

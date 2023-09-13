@@ -18,7 +18,7 @@ export const CatalogueDetails: React.FC = () => {
         <div className='flex items-center justify-between'>
           <h1 className='text-4xl font-bold'>{school.title}</h1>
           <label
-            className={`w-fit rounded-lg bg-green-200 py-1 px-3 text-sm font-medium`}
+            className={`leading-sm inline-flex items-center rounded-full bg-green-200 px-3 py-1 text-xs font-bold uppercase text-green-700`}
           >
             {school.status}
           </label>

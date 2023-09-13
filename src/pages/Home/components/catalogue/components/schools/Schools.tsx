@@ -37,7 +37,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
               </div>
               <div className='flex justify-end'>
                 <span
-                  className={`rounded-lg py-1 px-3 text-sm ${getStatusBackgroundColor(
+                  className={`leading-sm inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase ${getStatusBackgroundColor(
                     school.status
                   )}`}
                 >
