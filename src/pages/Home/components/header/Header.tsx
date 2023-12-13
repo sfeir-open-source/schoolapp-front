@@ -6,7 +6,7 @@ export default function Header() {
   const { logout, user } = useAuth();
 
   return (
-    <header className='fixed z-50 w-full border border-b border-gray-200 bg-white/20 p-4 backdrop-blur-sm'>
+    <header className='fixed z-50 w-full border border-b border-slate-200 bg-slate-100/70 p-4 backdrop-blur-sm'>
       <nav className='flex items-center justify-between'>
         <Link to={`/catalogue`}>
           <div className='bg-gradient-to-r from-cyan-500 to-blue-500/50 bg-clip-text text-2xl font-extrabold text-transparent'>
