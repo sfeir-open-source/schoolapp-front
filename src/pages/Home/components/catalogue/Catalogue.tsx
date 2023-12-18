@@ -2,10 +2,16 @@ import { useState } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
 import { useGetSchools } from '../../hooks/schools.hook';
-import { useStatus, useStatusRecord } from '../../hooks/filter-status.hook';
+import { useStatusRecord } from '../../hooks/filter-status.hook';
 
 export function Catalogue() {
-  const [selectedStatus, setSelectedStatus] = useState(['active']);
+  const [selectedStatus, setSelectedStatus] = useState([
+    'active',
+    'abandoned',
+    'wish',
+    'proposal',
+    'rejected',
+  ]);
   const [recordStatus] = useStatusRecord();
   const { data, error, isLoading } = useGetSchools(selectedStatus);
 

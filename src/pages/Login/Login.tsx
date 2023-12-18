@@ -3,8 +3,8 @@ import loginSvg from './../../assets/login.svg';
 
 export default function Login() {
   return (
-    <div className='flex h-full w-full'>
-      <div className='flex  h-full w-9/12 flex-col items-center justify-center gap-4 bg-gradient-to-b from-cyan-500/50 to-blue-500/50'>
+    <div className='flex h-full w-full flex-col-reverse md:flex-row'>
+      <div className='flex  h-full w-full flex-col items-center justify-center gap-4 bg-gradient-to-b from-cyan-500/50 to-blue-500/50'>
         <GoogleLoginButton />
       </div>
       <div className='flex h-full w-full flex-col items-center  justify-center gap-20'>

@@ -18,11 +18,11 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
         {schools.map(school => (
           <Link
             to={`/catalogue/${school.id}`}
-            key={school.id}
+            key={school.title}
             className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
           >
             <img
-              className='h-full w-full rounded-t-lg'
+              className='h-44 w-full rounded-t object-cover'
               src={school.image}
               alt={`${school.title}_image`}
             />
@@ -31,9 +31,9 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
                 <span className='text-xl font-bold text-gray-900 dark:text-white'>
                   {school.title}
                 </span>
-                <span className='font-normal text-gray-700 dark:text-gray-400'>
+                <p className='font-normal text-gray-700 line-clamp-3 dark:text-gray-400'>
                   {school.publicSummary}
-                </span>
+                </p>
               </div>
               <div className='flex justify-end'>
                 <span

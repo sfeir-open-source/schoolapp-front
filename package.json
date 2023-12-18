@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/google-one-tap": "^1.2.2",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
