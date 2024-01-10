@@ -6,7 +6,7 @@ import { useAuth } from '../../../../core/authentification/auth.hook';
 export const CatalogueDetails: React.FC = () => {
   const { id } = useParams();
 
-  const { data: school, error, isLoading } = useGetSchool(Number(id));
+  const { data: school, error, isLoading } = useGetSchool(id);
 
   const user = useAuth().user;
 
