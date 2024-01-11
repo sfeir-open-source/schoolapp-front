@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import type { School } from '../../../../../../shared/interfaces/schools.interface';
+import { useContext } from 'react';
+import { EditModeContext } from '../../../../../../shared/context/edit-mode.context';
 
 interface SchoolsProps {
   schools: School[] | undefined;
