@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGetSchool } from '../../hooks/schools.hook';
-import { AiFillClockCircle, AiOutlineBook } from 'react-icons/ai';
+import { AiFillClockCircle } from 'react-icons/ai';
 import { useAuth } from '../../../../core/authentification/auth.hook';
 
 export const CatalogueDetails: React.FC = () => {
@@ -14,7 +14,7 @@ export const CatalogueDetails: React.FC = () => {
   if (error) return <div>An error has occurred: {error.message};</div>;
   if (school)
     return (
-      <div className='g-4 mt-20 flex flex-col px-[27rem]'>
+      <div className='g-4 mt-20 flex flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
         <div className='flex items-center justify-between'>
           <h1 className='text-4xl font-bold'>{school.title}</h1>
           <label
@@ -23,20 +23,18 @@ export const CatalogueDetails: React.FC = () => {
             {school.status}
           </label>
         </div>
-        <div className='mb-4 flex items-center  justify-between'></div>
-        <div>
+        <div className='mb-4 flex items-center justify-between'></div>
+        <div className='mb-4'>
           <div className='relative'>
             <img
-              className='mb-4 rounded-lg'
+              className='mb-4 h-60 w-full rounded-lg object-cover sm:h-72 lg:h-96'
+              style={{ objectPosition: '0 10%' }}
               src={school.image}
               alt={`${school.title}_image`}
             ></img>
-            <div className='absolute bottom-0 flex w-full items-center justify-between px-[1rem]'>
-              <div className='mb-4 flex gap-4'>
-                <div
-                  className=' w-fit rounded-lg bg-white px-4 py-2 drop-shadow-md'
-                  style={{ display: 'grid', gridTemplateColumns: '6rem 1fr' }}
-                >
+            <div className='bottom-0 flex w-full items-center justify-between'>
+              <div className='flex items-start gap-4'>
+                <div className='flex w-fit gap-4 rounded-lg bg-white px-4 py-2 drop-shadow-md'>
                   <div className='g-4 flex items-center'>
                     <span className='text-sm font-bold'> Teachers</span>
                   </div>
@@ -78,7 +76,7 @@ export const CatalogueDetails: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className='rounded-lg p-1'>
+        <div className='rounded-lg p-1 sm:bg-blue-300 md:bg-red-300 lg:bg-green-200 xl:bg-yellow-200'>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab,
           asperiores nam quisquam dolore corporis earum officia incidunt,
           dolorum sed alias minima aut rerum soluta provident qui? Nisi aut
