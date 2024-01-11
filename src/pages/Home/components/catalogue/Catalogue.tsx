@@ -1,26 +1,22 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
-import { useGetSchools } from '../../hooks/schools.hook';
+import { useAddSchool, useGetSchools } from '../../hooks/schools.hook';
 import { useStatusRecord } from '../../hooks/filter-status.hook';
 import AddSchoolButton from '../add-school-button/AddSchoolButton';
 import { EditModeContext } from '../../../../shared/context/edit-mode.context';
+import { useStatus } from '../../hooks/status.hook';
 
 export function Catalogue() {
-  const [selectedStatus, setSelectedStatus] = useState([
-    'active',
-    'abandoned',
-    'wish',
-    'proposal',
-    'rejected',
-  ]);
+  const [selectedStatus, setSelectedStatus] = useStatus();
   const [recordStatus] = useStatusRecord();
   const { data, error, isLoading } = useGetSchools(selectedStatus);
   const { editMode } = useContext(EditModeContext);
+  const addSchool = useAddSchool();
 
-  const handleStatusChange = (newSelectedStatus: string[]) => {
+  const handleStatusChange = (newSelectedStatus: string[]) =>
     setSelectedStatus(newSelectedStatus);
-  };
+  const handleAddSchool = () => addSchool.mutate();
 
   return (
     <div className='mt-16 flex flex-col gap-4 p-4'>
@@ -30,9 +26,8 @@ export function Catalogue() {
           status={recordStatus}
           selectedStatus={selectedStatus}
         />
-        <AddSchoolButton editMode={editMode} />
+        <AddSchoolButton editMode={editMode} onClick={handleAddSchool} />
       </div>
-
       <Schools schools={data} error={error} isLoading={isLoading} />
     </div>
   );

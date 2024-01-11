@@ -14,7 +14,5 @@ export default function AddSchoolButton({
     <div className='ml-auto'>
       <PrimaryButton text='Add School' onClick={onClick} />
     </div>
-  ) : (
-    ''
-  );
+  ) : null;
 }
