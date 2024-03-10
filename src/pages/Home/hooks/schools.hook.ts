@@ -15,16 +15,26 @@ const URI = {
   add: `${BACKEND_URI}/schools/add`,
 };
 
-export const useGetSchools = (status: string[]) => {
+export const useGetSchools = (status: string[], searchTerm: string) => {
   const [cookies] = useCookies(['jwt']);
   return useQuery<School[], Error>({
     queryFn: () => fetchData(URI.schools, cookies.jwt),
     queryKey: 'schools',
-    select: schools => filterSchoolsByStatus(schools, status),
+    select: schools => filterSchools(schools, status, searchTerm),
   });
 };
 
-const filterSchoolsByStatus = (schools: School[], status: string[]) =>
+const filterSchools = (
+  schools: School[],
+  status: string[],
+  searchTerm: string
+) => {
+  const filteredSchoolsByStatus = filterSchoolsByStatus(schools, status);
+  return filteredSchoolsByStatus.filter(school =>
+    school.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+  );
+};
+const filterSchoolsByStatus = (schools: School[], status: string[]): School[] =>
   schools.filter(school => status.includes(school.status));
 
 export const useGetSchool = (id: string | undefined) => {

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
 import { useAddSchool, useGetSchools } from '../../hooks/schools.hook';
@@ -9,13 +9,16 @@ import { useStatus } from '../../hooks/status.hook';
 
 export function Catalogue() {
   const [selectedStatus, setSelectedStatus] = useStatus();
+  const [searchTerm, setSearchTerm] = useState('');
   const [recordStatus] = useStatusRecord();
-  const { data, error, isLoading } = useGetSchools(selectedStatus);
+  const { data, error, isLoading } = useGetSchools(selectedStatus, searchTerm);
   const { editMode } = useContext(EditModeContext);
   const addSchool = useAddSchool();
 
   const handleStatusChange = (newSelectedStatus: string[]) =>
     setSelectedStatus(newSelectedStatus);
+  const handleSearchTermChange = (searchTerm: string) =>
+    setSearchTerm(searchTerm);
   const handleAddSchool = () => addSchool.mutate();
 
   return (
@@ -23,6 +26,8 @@ export function Catalogue() {
       <div className='grid w-full grid-cols-3 justify-items-center'>
         <Filter
           onStatusChange={handleStatusChange}
+          onSearchTermChange={handleSearchTermChange}
+          searchTerm={searchTerm}
           status={recordStatus}
           selectedStatus={selectedStatus}
         />

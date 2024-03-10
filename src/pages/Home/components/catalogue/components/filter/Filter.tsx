@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
 import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
@@ -6,13 +6,17 @@ import type { StatusType } from '../../../../../../shared/interfaces/filter-stat
 
 interface FilterProps {
   onStatusChange: (status: string[]) => void;
+  onSearchTermChange: (searchTerm: string) => void;
   status: Record<StatusType, string>;
+  searchTerm: string;
   selectedStatus: string[];
 }
 
 export default function Filter({
   onStatusChange,
+  onSearchTermChange,
   status,
+  searchTerm,
   selectedStatus,
 }: FilterProps) {
   const [isShown, setShow] = useState<boolean>(false);
@@ -25,6 +29,11 @@ export default function Filter({
   };
 
   const toggle = () => setShow(!isShown);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    onSearchTermChange(value);
+  };
 
   return (
     <div className='col-start-2'>
@@ -56,6 +65,8 @@ export default function Filter({
               id='default-search'
               className='relative block w-full rounded-lg border border-gray-300 bg-gray-50 px-5 py-1.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500'
               placeholder='Search a School ...'
+              value={searchTerm}
+              onChange={handleChange}
               required
             ></input>
           </div>
