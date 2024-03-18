@@ -9,7 +9,7 @@ export default function Home() {
   const { editMode, toggle } = useContext(EditModeContext);
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex h-full flex-col'>
       <Header editMode={editMode} toggleEditMode={() => toggle()} />
       <Outlet />
     </div>

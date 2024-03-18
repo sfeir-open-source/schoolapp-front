@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import toast from 'react-hot-toast';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../../../shared/helpers/fetch-data';
@@ -13,6 +14,7 @@ const URI = {
   schools: `${BACKEND_URI}/schools/`,
   school: `${BACKEND_URI}/schools/get/`,
   add: `${BACKEND_URI}/schools/add`,
+  update: `${BACKEND_URI}/schools/update`,
 };
 
 export const useGetSchools = (status: string[], searchTerm: string) => {
@@ -48,6 +50,7 @@ export const useGetSchool = (id: string | undefined) => {
 export const useAddSchool = () => {
   const [cookies] = useCookies(['jwt']);
   const navigate = useNavigate();
+
   return useMutation<School>({
     mutationFn: () =>
       axios.post(URI.add, EMPTY_SCHOOL, {
@@ -58,6 +61,25 @@ export const useAddSchool = () => {
     },
     onError: err => {
       console.log(err);
+    },
+  });
+};
+
+export const useUpdateSchool = () => {
+  const [cookies] = useCookies(['jwt']);
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: (school: School) =>
+      axios.put(`${URI.update}/${school.id}`, school, {
+        headers: { Authorization: `Bearer ${cookies.jwt}` },
+      }),
+    onSuccess: success => {
+      toast.success('la School (' + success.data.title + ') a été modifié !');
+      navigate(`/catalogue/${success.data.id}`);
+    },
+    onError: err => {
+      toast.error('Problème lors de la modification de la School !');
     },
   });
 };

@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoutes } from './shared/components/ProtectedRoute';
 import { EditModeContext } from './shared/context/edit-mode.context';
 import { useEditMode } from './pages/Home/hooks/edit-mode.hook';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const { editMode, toggle } = useEditMode();
@@ -29,6 +30,7 @@ export default function App() {
             </Route>
           </Route>
         </Routes>
+        <Toaster />
       </div>
     </EditModeContext.Provider>
   );
