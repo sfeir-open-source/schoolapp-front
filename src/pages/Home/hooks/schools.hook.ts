@@ -1,7 +1,7 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import toast from 'react-hot-toast';
-import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../../../shared/helpers/fetch-data';
 import type { School } from '../../../shared/interfaces/schools.interface';
@@ -19,9 +19,9 @@ const URI = {
 
 export const useGetSchools = (status: string[], searchTerm: string) => {
   const [cookies] = useCookies(['jwt']);
-  return useQuery<School[], Error>({
+  return useQuery<School[]>({
     queryFn: () => fetchData(URI.schools, cookies.jwt),
-    queryKey: 'schools',
+    queryKey: ['schools'],
     select: schools => filterSchools(schools, status, searchTerm),
   });
 };
@@ -41,15 +41,16 @@ const filterSchoolsByStatus = (schools: School[], status: string[]): School[] =>
 
 export const useGetSchool = (id: string | undefined) => {
   const [cookies] = useCookies(['jwt']);
-  return useQuery<School, Error>({
+  return useQuery<School>({
     queryFn: () => fetchData(URI.school + id, cookies.jwt),
-    queryKey: 'school',
+    queryKey: ['school', id],
   });
 };
 
 export const useAddSchool = () => {
   const [cookies] = useCookies(['jwt']);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation<School>({
     mutationFn: () =>
@@ -57,6 +58,7 @@ export const useAddSchool = () => {
         headers: { Authorization: `Bearer ${cookies.jwt}` },
       }),
     onSuccess: school => {
+      queryClient.invalidateQueries({ queryKey: ['schools'] });
       navigate(`/catalogue/${school.id}`);
     },
     onError: err => {
@@ -68,6 +70,7 @@ export const useAddSchool = () => {
 export const useUpdateSchool = () => {
   const [cookies] = useCookies(['jwt']);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (school: School) =>
@@ -75,8 +78,22 @@ export const useUpdateSchool = () => {
         headers: { Authorization: `Bearer ${cookies.jwt}` },
       }),
     onSuccess: success => {
+      queryClient.setQueriesData(
+        { queryKey: ['schools'] },
+        (prevSchools: School[] | undefined) => {
+          if (!prevSchools) return undefined;
+          return prevSchools.map(school =>
+            school.id === success.data.id ? success.data : school
+          );
+        }
+      );
+
+      queryClient.setQueriesData(
+        { queryKey: ['school', success.data.id] },
+        () => success.data
+      );
+
       toast.success('la School (' + success.data.title + ') a été modifié !');
-      navigate(`/catalogue/${success.data.id}`);
     },
     onError: err => {
       toast.error('Problème lors de la modification de la School !');
