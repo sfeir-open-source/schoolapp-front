@@ -52,14 +52,14 @@ export const useAddSchool = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  return useMutation<School>({
+  return useMutation({
     mutationFn: () =>
       axios.post(URI.add, EMPTY_SCHOOL, {
         headers: { Authorization: `Bearer ${cookies.jwt}` },
       }),
-    onSuccess: school => {
+    onSuccess: success => {
       queryClient.invalidateQueries({ queryKey: ['schools'] });
-      navigate(`/catalogue/${school.id}`);
+      navigate(`/catalogue/${success.data.id}`);
     },
     onError: err => {
       console.log(err);
@@ -103,7 +103,7 @@ export const useUpdateSchool = () => {
 
 export const EMPTY_SCHOOL = {
   title: 'Empty School',
-  image: 'default-school.png',
+  image: 'https://wallpaper.dog/large/10790303.jpg',
   publicSummary: 'empty description',
   duration: '1.0',
   objectives: [],
