@@ -15,6 +15,7 @@ const URI = {
   school: `${BACKEND_URI}/schools/get/`,
   add: `${BACKEND_URI}/schools/add`,
   update: `${BACKEND_URI}/schools/update`,
+  delete: `${BACKEND_URI}/schools/delete`,
 };
 
 export const useGetSchools = (status: string[], searchTerm: string) => {
@@ -97,6 +98,32 @@ export const useUpdateSchool = () => {
     },
     onError: err => {
       toast.error('Problème lors de la modification de la School !');
+    },
+  });
+};
+
+export const useDeleteSchool = () => {
+  const [cookies] = useCookies(['jwt']);
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) =>
+      axios.delete(`${URI.delete}/${id}`, {
+        headers: { Authorization: `Bearer ${cookies.jwt}` },
+      }),
+    onSuccess: (success, id) => {
+      queryClient.setQueriesData(
+        { queryKey: ['schools'] },
+        (prevSchools: School[] | undefined) => {
+          if (!prevSchools) return undefined;
+          return prevSchools.filter(school => school.id !== id);
+        }
+      );
+
+      toast.success('la School a été supprimé !');
+    },
+    onError: err => {
+      toast.error('Problème lors de la suppression de la School !');
     },
   });
 };

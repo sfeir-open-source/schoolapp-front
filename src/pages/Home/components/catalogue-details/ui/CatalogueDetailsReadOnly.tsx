@@ -13,7 +13,7 @@ export default function CatalogueDetailsReadOnly({
   user,
 }: CatalogueDetailsReadOnlyProps) {
   return (
-    <div className='g-4 mt-20 flex h-full flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
+    <div className='g-4 mt-20 flex h-[100vh] flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
       <div className='flex items-center justify-between'>
         <h1 className='text-4xl font-bold'>{school.title}</h1>
         <label className={getStatusBackgroundColor(school.status)}>

@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import type { School } from '../../../../../../shared/interfaces/schools.interface';
+import { useContext } from 'react';
+import { EditModeContext } from '../../../../../../shared/context/edit-mode.context';
+import IconDeleteButton from '../icon-delete-button/IconDeleteButton';
+import { useDeleteSchool } from '../../../../hooks/schools.hook';
 
 interface SchoolsProps {
   schools: School[] | undefined;
@@ -8,6 +12,10 @@ interface SchoolsProps {
   isLoading: boolean;
 }
 export default function Schools({ schools, error, isLoading }: SchoolsProps) {
+  const { editMode } = useContext(EditModeContext);
+  const mutation = useDeleteSchool();
+
+  const handleDeleteSchool = (id: number) => mutation.mutate(id);
   if (isLoading) return <div>Loading ..</div>;
 
   if (error) return <div>An error has occurred: {error.message};</div>;
@@ -18,9 +26,13 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
         {schools.map(school => (
           <Link
             to={`/catalogue/${school.id}`}
-            key={school.title}
-            className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
+            key={school.id}
+            className='relative grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
           >
+            <IconDeleteButton
+              isShown={editMode}
+              onButtonClick={() => handleDeleteSchool(school.id)}
+            />
             <img
               className='h-44 w-full rounded-t object-cover'
               src={school.image}

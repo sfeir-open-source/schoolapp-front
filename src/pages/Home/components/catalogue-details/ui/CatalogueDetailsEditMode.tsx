@@ -38,7 +38,7 @@ export default function CatalogueDetailsEditMode({
   };
 
   return (
-    <div className='g-4 relative mt-20 flex h-full flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
+    <div className='g-4 relative mt-20 flex h-[100vh] flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
       <div className='fixed right-0 top-[4.25rem] z-50 mr-4'>
         <SaveButton
           isShown={showSaveButton}
