@@ -1,18 +1,16 @@
-import { MouseEventHandler } from 'react';
-import PrimaryButton from '../../../../shared/components/PrimaryButton';
+import Button from '../../../../shared/components/Button';
 
 interface AddSchoolButtonProps {
   editMode: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: () => void;
 }
 
-export default function AddSchoolButton({
-  editMode,
-  onClick,
-}: AddSchoolButtonProps) {
+export default function AddSchoolButton({ editMode, onClick }: AddSchoolButtonProps) {
   return editMode ? (
     <div className='ml-auto'>
-      <PrimaryButton text='Add School' onClick={onClick} />
+      <Button variant='primary' onClick={onClick}>
+        Add School
+      </Button>
     </div>
   ) : null;
 }

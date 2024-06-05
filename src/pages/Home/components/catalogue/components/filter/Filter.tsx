@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
-import SecondaryButton from '../../../../../../shared/components/SecondaryButton';
 import type { StatusType } from '../../../../../../shared/interfaces/filter-status.interface';
+import Button from '../../../../../../shared/components/Button';
 
 interface FilterProps {
   onStatusChange: (status: string[]) => void;
@@ -39,9 +39,7 @@ export default function Filter({
     <div className='col-start-2'>
       <div className='flex justify-center gap-4'>
         <form>
-          <label className='sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-            Search
-          </label>
+          <label className='sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white'>Search</label>
           <div className='relative'>
             <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
               <svg
@@ -72,9 +70,9 @@ export default function Filter({
           </div>
         </form>
         <div className='relative flex items-center justify-start'>
-          <SecondaryButton onClick={toggle}>
+          <Button variant='secondary' onClick={toggle}>
             <AiFillFilter />
-          </SecondaryButton>
+          </Button>
           {isShown && (
             <div className='filter-content absolute top-[2rem] left-0 left-1/2 z-10 w-fit -translate-x-1/2 rounded-lg border border-gray-300 bg-white p-3 shadow-lg dark:bg-gray-700'>
               <ul className='flex flex-col gap-2 text-sm'>

@@ -1,8 +1,8 @@
-import PrimaryButton from '../../../../shared/components/PrimaryButton';
 import { useAuth } from '../../../../core/authentification/auth.hook';
 import { Link } from 'react-router-dom';
 import { AiFillEye, AiFillEdit } from 'react-icons/ai';
 import { MouseEventHandler } from 'react';
+import Button from '../../../../shared/components/Button';
 
 interface HeaderProps {
   editMode: boolean;
@@ -41,7 +41,9 @@ export default function Header({ editMode, toggleEditMode }: HeaderProps) {
             <img className='w-7 rounded-full' src={user?.picture} />
           </div>
         </div>
-        <PrimaryButton text={'Sign Out'} onClick={() => logout()} />
+        <Button variant='primary' onClick={logout}>
+          Sign Out
+        </Button>
       </div>
     </header>
   );
