@@ -9,10 +9,7 @@ interface SchoolEditableStatusProps {
   onStatusChange: (value: StatusType) => void;
 }
 
-export default function SchoolEditableStatus({
-  selectedStatus,
-  onStatusChange,
-}: SchoolEditableStatusProps) {
+export default function SchoolEditableStatus({ selectedStatus, onStatusChange }: SchoolEditableStatusProps) {
   const [status] = useStatusRecord();
   const [showStatus, setShow] = useState<boolean>(false);
 
@@ -27,10 +24,7 @@ export default function SchoolEditableStatus({
 
   return (
     <div ref={statusRef}>
-      <label
-        className={'cursor-pointer ' + getStatusBackgroundColor(selectedStatus)}
-        onClick={toggleStatus}
-      >
+      <label className={'cursor-pointer ' + getStatusBackgroundColor(selectedStatus)} onClick={toggleStatus}>
         {selectedStatus}
       </label>
       {showStatus && (

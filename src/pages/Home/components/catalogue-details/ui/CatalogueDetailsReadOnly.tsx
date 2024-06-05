@@ -8,17 +8,12 @@ interface CatalogueDetailsReadOnlyProps {
   user: GoogleUser | null;
 }
 
-export default function CatalogueDetailsReadOnly({
-  school,
-  user,
-}: CatalogueDetailsReadOnlyProps) {
+export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDetailsReadOnlyProps) {
   return (
     <div className='g-4 mt-20 flex h-[100vh] flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
       <div className='flex items-center justify-between'>
         <h1 className='text-4xl font-bold'>{school.title}</h1>
-        <label className={getStatusBackgroundColor(school.status)}>
-          {school.status}
-        </label>
+        <label className={getStatusBackgroundColor(school.status)}>{school.status}</label>
       </div>
       <div className='mb-4 flex items-center justify-between'></div>
       <div className='mb-4'>
@@ -46,22 +41,13 @@ export default function CatalogueDetailsReadOnly({
                 </div>
                 <div className='flex items-center'>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[1.7rem] rounded-full'
-                    />
+                    <img src={user?.picture} className='min-w-[1.7rem] rounded-full' />
                   </div>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[2rem] rounded-full border-2 border-white'
-                    />
+                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
                   </div>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[2rem] rounded-full border-2 border-white'
-                    />
+                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
                   </div>
                 </div>
               </div>

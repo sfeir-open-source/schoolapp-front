@@ -5,10 +5,7 @@ interface SaveButtonProps {
   isShown: boolean;
 }
 
-export default function SaveButton({
-  onButtonClick,
-  isShown,
-}: SaveButtonProps) {
+export default function SaveButton({ onButtonClick, isShown }: SaveButtonProps) {
   if (isShown) {
     return (
       <button

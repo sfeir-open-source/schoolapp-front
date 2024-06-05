@@ -14,10 +14,7 @@ interface CatalogueDetailsEditModeProps {
   user: GoogleUser | null;
 }
 
-export default function CatalogueDetailsEditMode({
-  school,
-  user,
-}: CatalogueDetailsEditModeProps) {
+export default function CatalogueDetailsEditMode({ school, user }: CatalogueDetailsEditModeProps) {
   const [editedSchool, setSchool] = useState(school);
   const [showSaveButton, setShowSaveButton] = useState(false);
   const mutation = useUpdateSchool();
@@ -40,20 +37,11 @@ export default function CatalogueDetailsEditMode({
   return (
     <div className='g-4 relative mt-20 flex h-[100vh] flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-80'>
       <div className='fixed right-0 top-[4.25rem] z-50 mr-4'>
-        <SaveButton
-          isShown={showSaveButton}
-          onButtonClick={handleSaveButtonClick}
-        />
+        <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
       </div>
       <div className='relative flex items-center justify-between'>
-        <SchoolTitleInput
-          title={editedSchool.title}
-          onInputChange={value => handleInputChange(value, 'title')}
-        />
-        <SchoolEditableStatus
-          selectedStatus={editedSchool.status}
-          onStatusChange={handleStatusChange}
-        />
+        <SchoolTitleInput title={editedSchool.title} onInputChange={value => handleInputChange(value, 'title')} />
+        <SchoolEditableStatus selectedStatus={editedSchool.status} onStatusChange={handleStatusChange} />
       </div>
       <div className='mb-4 flex items-center justify-between'></div>
       <div className='mb-4'>
@@ -81,22 +69,13 @@ export default function CatalogueDetailsEditMode({
                 </div>
                 <div className='flex items-center'>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[1.7rem] rounded-full'
-                    />
+                    <img src={user?.picture} className='min-w-[1.7rem] rounded-full' />
                   </div>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[2rem] rounded-full border-2 border-white'
-                    />
+                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
                   </div>
                   <div className='w-4'>
-                    <img
-                      src={user?.picture}
-                      className='min-w-[2rem] rounded-full border-2 border-white'
-                    />
+                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
                   </div>
                 </div>
               </div>
@@ -109,9 +88,7 @@ export default function CatalogueDetailsEditMode({
                 min='0.5'
                 step='0.5'
                 value={editedSchool.duration}
-                onChange={event =>
-                  handleInputChange(event.target.value, 'duration')
-                }
+                onChange={event => handleInputChange(event.target.value, 'duration')}
               />
               <span>days</span>
             </div>

@@ -1,6 +1,5 @@
 export const getStatusBackgroundColor = (status: string) => {
-  const className =
-    'leading-sm inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase';
+  const className = 'leading-sm inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase';
   if (status === 'active') {
     return className + ' bg-green-200 text-green-700';
   }

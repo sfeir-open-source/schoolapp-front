@@ -13,19 +13,12 @@ export default function App() {
 
   return (
     <EditModeContext.Provider value={{ editMode, toggle }}>
-      <div
-        className={
-          'h-full w-full ' + (editMode ? 'bg-slate-200' : 'bg-slate-100')
-        }
-      >
+      <div className={'h-full w-full ' + (editMode ? 'bg-slate-200' : 'bg-slate-100')}>
         <Routes>
           <Route path='/' element={<Login />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path='/catalogue' element={<Home />}>
-              <Route
-                path='/catalogue/:id'
-                element={<CatalogueDetails />}
-              ></Route>
+              <Route path='/catalogue/:id' element={<CatalogueDetails />}></Route>
               <Route path='/catalogue' element={<Catalogue />}></Route>
             </Route>
           </Route>

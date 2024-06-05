@@ -18,10 +18,7 @@ export default function GoogleLoginButton() {
       callback: handleCredentialResponse,
     });
 
-    window.google.accounts.id.renderButton(
-      document.getElementById('google-login-button')!,
-      { theme: 'outline' }
-    );
+    window.google.accounts.id.renderButton(document.getElementById('google-login-button')!, { theme: 'outline' });
     window.google.accounts.id.prompt();
   }, [login]);
 

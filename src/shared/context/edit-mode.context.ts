@@ -4,6 +4,4 @@ interface EditModeContextType {
   editMode: boolean;
   toggle: () => void;
 }
-export const EditModeContext = createContext<EditModeContextType>(
-  {} as EditModeContextType
-);
+export const EditModeContext = createContext<EditModeContextType>({} as EditModeContextType);

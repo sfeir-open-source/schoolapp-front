@@ -6,10 +6,7 @@ interface IconDeleteButtonProps {
   isShown: boolean;
 }
 
-export default function IconDeleteButton({
-  onButtonClick,
-  isShown,
-}: IconDeleteButtonProps) {
+export default function IconDeleteButton({ onButtonClick, isShown }: IconDeleteButtonProps) {
   const handleButtonClick = (e: React.MouseEvent<SVGElement>) => {
     e.preventDefault();
     onButtonClick();
@@ -17,10 +14,7 @@ export default function IconDeleteButton({
   if (isShown) {
     return (
       <div className='gradient-overlay absolute z-10 flex w-full justify-end p-2'>
-        <AiFillDelete
-          className='text-white'
-          onClick={e => handleButtonClick(e)}
-        />
+        <AiFillDelete className='text-white' onClick={e => handleButtonClick(e)} />
       </div>
     );
   }

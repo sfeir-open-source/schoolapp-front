@@ -27,11 +27,7 @@ export const useGetSchools = (status: string[], searchTerm: string) => {
   });
 };
 
-const filterSchools = (
-  schools: School[],
-  status: string[],
-  searchTerm: string
-) => {
+const filterSchools = (schools: School[], status: string[], searchTerm: string) => {
   const filteredSchoolsByStatus = filterSchoolsByStatus(schools, status);
   return filteredSchoolsByStatus.filter(school =>
     school.title.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
@@ -79,20 +75,12 @@ export const useUpdateSchool = () => {
         headers: { Authorization: `Bearer ${cookies.jwt}` },
       }),
     onSuccess: success => {
-      queryClient.setQueriesData(
-        { queryKey: ['schools'] },
-        (prevSchools: School[] | undefined) => {
-          if (!prevSchools) return undefined;
-          return prevSchools.map(school =>
-            school.id === success.data.id ? success.data : school
-          );
-        }
-      );
+      queryClient.setQueriesData({ queryKey: ['schools'] }, (prevSchools: School[] | undefined) => {
+        if (!prevSchools) return undefined;
+        return prevSchools.map(school => (school.id === success.data.id ? success.data : school));
+      });
 
-      queryClient.setQueriesData(
-        { queryKey: ['school', success.data.id] },
-        () => success.data
-      );
+      queryClient.setQueriesData({ queryKey: ['school', success.data.id] }, () => success.data);
 
       toast.success('la School (' + success.data.title + ') a été modifié !');
     },
@@ -112,13 +100,10 @@ export const useDeleteSchool = () => {
         headers: { Authorization: `Bearer ${cookies.jwt}` },
       }),
     onSuccess: (success, id) => {
-      queryClient.setQueriesData(
-        { queryKey: ['schools'] },
-        (prevSchools: School[] | undefined) => {
-          if (!prevSchools) return undefined;
-          return prevSchools.filter(school => school.id !== id);
-        }
-      );
+      queryClient.setQueriesData({ queryKey: ['schools'] }, (prevSchools: School[] | undefined) => {
+        if (!prevSchools) return undefined;
+        return prevSchools.filter(school => school.id !== id);
+      });
 
       toast.success('la School a été supprimé !');
     },

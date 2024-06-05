@@ -15,10 +15,8 @@ export function Catalogue() {
   const { editMode } = useContext(EditModeContext);
   const addSchool = useAddSchool();
 
-  const handleStatusChange = (newSelectedStatus: string[]) =>
-    setSelectedStatus(newSelectedStatus);
-  const handleSearchTermChange = (searchTerm: string) =>
-    setSearchTerm(searchTerm);
+  const handleStatusChange = (newSelectedStatus: string[]) => setSelectedStatus(newSelectedStatus);
+  const handleSearchTermChange = (searchTerm: string) => setSearchTerm(searchTerm);
   const handleAddSchool = () => addSchool.mutate();
 
   return (

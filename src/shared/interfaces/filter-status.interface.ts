@@ -4,9 +4,4 @@ export interface Status {
   isChecked: boolean;
 }
 
-export type StatusType =
-  | 'active'
-  | 'abandoned'
-  | 'wish'
-  | 'proposal'
-  | 'rejected';
+export type StatusType = 'active' | 'abandoned' | 'wish' | 'proposal' | 'rejected';

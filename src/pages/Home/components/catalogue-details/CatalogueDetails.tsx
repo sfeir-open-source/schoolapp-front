@@ -15,10 +15,8 @@ export const CatalogueDetails: React.FC = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error has occurred: {error.message};</div>;
-  if (school && !editMode)
-    return <CatalogueDetailsReadOnly school={school} user={user} />;
-  if (school && editMode)
-    return <CatalogueDetailsEditMode school={school} user={user} />;
+  if (school && !editMode) return <CatalogueDetailsReadOnly school={school} user={user} />;
+  if (school && editMode) return <CatalogueDetailsEditMode school={school} user={user} />;
 
   return <div>Catalogue</div>;
 };

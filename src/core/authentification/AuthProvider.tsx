@@ -9,9 +9,7 @@ interface InterfaceAuthContext {
   user: GoogleUser | null;
 }
 
-export const AuthContext = createContext<InterfaceAuthContext>(
-  {} as InterfaceAuthContext
-);
+export const AuthContext = createContext<InterfaceAuthContext>({} as InterfaceAuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useLocalStorage('___user___', null);
