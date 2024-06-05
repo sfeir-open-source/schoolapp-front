@@ -33,11 +33,13 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
               isShown={editMode}
               onButtonClick={() => handleDeleteSchool(school.id)}
             />
-            <img
-              className='h-44 w-full rounded-t object-cover'
-              src={school.image}
-              alt={`${school.title}_image`}
-            />
+            <div>
+              <img
+                className='h-44 w-full rounded-t object-cover'
+                src={school.image}
+                alt={`${school.title}_image`}
+              />
+            </div>
             <div className='flex flex-col gap-1 p-4'>
               <div className='flex h-full flex-col gap-1'>
                 <span className='text-xl font-bold text-gray-900 dark:text-white'>

@@ -1,5 +1,5 @@
-import { MouseEventHandler } from 'react';
-import { AiFillDelete, AiFillSave } from 'react-icons/ai';
+import { AiFillDelete } from 'react-icons/ai';
+import './IconDeleteButton.scss';
 
 interface IconDeleteButtonProps {
   onButtonClick: () => void;
@@ -16,9 +16,9 @@ export default function IconDeleteButton({
   };
   if (isShown) {
     return (
-      <div className='absolute flex w-full justify-end bg-gradient-to-b from-black to-transparent p-2'>
+      <div className='gradient-overlay absolute z-10 flex w-full justify-end p-2'>
         <AiFillDelete
-          className='text-slate-100'
+          className='text-white'
           onClick={e => handleButtonClick(e)}
         />
       </div>
