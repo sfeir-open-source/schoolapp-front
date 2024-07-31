@@ -21,7 +21,7 @@ const URI = {
 export const useGetSchools = (status: string[], searchTerm: string) => {
   const [cookies] = useCookies(['jwt']);
   return useQuery<School[]>({
-    queryFn: () => fetchData(URI.schools, cookies.jwt),
+    queryFn: () => fetchData(URI.fakeSchools, cookies.jwt),
     queryKey: ['schools'],
     select: schools => filterSchools(schools, status, searchTerm),
   });
@@ -39,7 +39,7 @@ const filterSchoolsByStatus = (schools: School[], status: string[]): School[] =>
 export const useGetSchool = (id: string | undefined) => {
   const [cookies] = useCookies(['jwt']);
   return useQuery<School>({
-    queryFn: () => fetchData(URI.school + id, cookies.jwt),
+    queryFn: () => fetchData(URI.fakeSchool + id, cookies.jwt),
     queryKey: ['school', id],
   });
 };
