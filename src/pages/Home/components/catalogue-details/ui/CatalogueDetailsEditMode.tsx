@@ -39,7 +39,7 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
       <div className='fixed right-0 top-[4.25rem] z-50 mr-4'>
         <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
       </div>
-      <div className='relative flex items-center justify-between'>
+      <div className='relative flex items-center justify-between gap-4'>
         <SchoolTitleInput title={editedSchool.title} onInputChange={value => handleInputChange(value, 'title')} />
         <SchoolEditableStatus selectedStatus={editedSchool.status} onStatusChange={handleStatusChange} />
       </div>

@@ -39,7 +39,7 @@ const filterSchoolsByStatus = (schools: School[], status: string[]): School[] =>
 export const useGetSchool = (id: string | undefined) => {
   const [cookies] = useCookies(['jwt']);
   return useQuery<School>({
-    queryFn: () => fetchData(URI.fakeSchool + id, cookies.jwt),
+    queryFn: () => fetchData(URI.fakeSchool, cookies.jwt),
     queryKey: ['school', id],
   });
 };
