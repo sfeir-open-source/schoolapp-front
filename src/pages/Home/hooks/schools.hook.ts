@@ -1,68 +1,69 @@
-import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { fetchData } from '../../../shared/helpers/fetch-data';
-import type { School } from '../../../shared/interfaces/schools.interface';
+import { School } from '@schoolApp/shared//interfaces/schools.interface';
+import { QueryDocumentSnapshot } from 'firebase/firestore';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import {
+  addSchool,
+  deleteSchool,
+  getAllSchools,
+  getSchoolByUid,
+} from '@schoolApp/shared/services/school.service';
 
-const BACKEND_URI: string = import.meta.env.VITE_BACKEND_URI;
-
-const URI = {
-  fakeSchools: '/fake-api/Schools.json',
-  fakeSchool: '/fake-api/School.json',
-  schools: `${BACKEND_URI}/schools/`,
-  school: `${BACKEND_URI}/schools/get/`,
-  add: `${BACKEND_URI}/schools/add`,
-};
-
-export const useGetSchools = (status: string[]) => {
-  const [cookies] = useCookies(['jwt']);
-  return useQuery<School[], Error>({
-    queryFn: () => fetchData(URI.schools, cookies.jwt),
-    queryKey: 'schools',
-    select: schools => filterSchoolsByStatus(schools, status),
+/**
+ * Hook to fetch schools with selected status
+ * @param status {StatusType[]}
+ */
+export const useGetSchools = (status: StatusType[]) => {
+  return useQuery({
+    queryFn: () => getAllSchools(status),
+    queryKey: ['schools', status],
+    select: schools =>
+      schools.docs.map((school: QueryDocumentSnapshot<School>) =>
+        school.data()
+      ),
   });
 };
 
-const filterSchoolsByStatus = (schools: School[], status: string[]) =>
-  schools.filter(school => status.includes(school.status));
-
-export const useGetSchool = (id: string | undefined) => {
-  const [cookies] = useCookies(['jwt']);
-  return useQuery<School, Error>({
-    queryFn: () => fetchData(URI.school + id, cookies.jwt),
-    queryKey: 'school',
+/**
+ * Hook to get a school by its uid
+ * @param uid {string}
+ */
+export const useGetSchool = (uid: string) => {
+  return useQuery({
+    queryFn: () => getSchoolByUid(uid),
+    select: school => school.data(),
+    queryKey: `schools/${uid}`,
   });
 };
 
+/**
+ * Hook to create an empty school
+ */
 export const useAddSchool = () => {
-  const [cookies] = useCookies(['jwt']);
   const navigate = useNavigate();
-  return useMutation<School>({
-    mutationFn: () =>
-      axios.post(URI.add, EMPTY_SCHOOL, {
-        headers: { Authorization: `Bearer ${cookies.jwt}` },
-      }),
-    onSuccess: school => {
-      navigate(`/catalogue/${school.id}`);
-    },
+  return useMutation({
+    mutationFn: () => addSchool(),
+    onSuccess: school => navigate(`/catalogue/${school.id}`),
     onError: err => {
       console.log(err);
     },
   });
 };
 
-export const EMPTY_SCHOOL = {
-  title: 'Empty School',
-  image: 'default-school.png',
-  publicSummary: 'empty description',
-  duration: '1.0',
-  objectives: [],
-  prerequisites: [],
-  document: '',
-  githubLink: '',
-  teachers: [],
-  status: 'proposal',
-  createdBy: 'auditor',
-  version: 1,
+/**
+ * Hook to delete a school
+ * @param uid {string}
+ */
+export const useDeleteSchool = (uid: string) => {
+  const navigate = useNavigate();
+  return useMutation({
+    mutationFn: () => deleteSchool(uid),
+    onSuccess: () => {
+      navigate(`/catalogue`);
+    },
+    onError: err => {
+      console.log(err);
+    },
+  });
 };

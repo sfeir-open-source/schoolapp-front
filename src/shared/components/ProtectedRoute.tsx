@@ -1,10 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../../core/authentification/auth.hook';
+import { auth } from '@schoolApp/core/firebase/firebase.config';
 
 export const ProtectedRoutes = () => {
-  const auth = useAuth();
-
-  if (!auth.user) {
+  if (!auth.currentUser) {
     // user is not authenticated
     return <Navigate to='/' />;
   }

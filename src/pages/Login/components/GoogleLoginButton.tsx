@@ -1,37 +1,35 @@
-import { useEffect } from 'react';
-import type { CredentialResponse } from 'google-one-tap';
-import jwt_decode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../core/authentification/auth.hook';
-import { GoogleUser } from '../../../shared/interfaces/google-user';
-import { useLocalStorage } from '../../../shared/hooks/local-storage.hook';
-import { useCookies } from 'react-cookie';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  UserCredential,
+} from '@firebase/auth';
+import { auth } from '@schoolApp/core/firebase/firebase.config';
+import { addUser } from '@schoolApp/shared/services/user.service';
 
 export default function GoogleLoginButton() {
-  const navigate = useNavigate();
-  const { login } = useAuth();
-  const [cookies, setCookie] = useCookies(['jwt', 'test']);
+  const navigate: NavigateFunction = useNavigate();
 
-  useEffect(() => {
-    window.google.accounts.id.initialize({
-      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-      callback: handleCredentialResponse,
-    });
+  // Initialize Firebase Auth provider
+  const provider = new GoogleAuthProvider();
 
-    window.google.accounts.id.renderButton(
-      document.getElementById('google-login-button')!,
-      { theme: 'outline' }
-    );
-    window.google.accounts.id.prompt();
-  }, [login]);
+  // whenever a user interacts with the provider, we force them to select an account
+  provider.setCustomParameters({
+    prompt: 'select_account ',
+  });
 
-  const handleCredentialResponse = (response: CredentialResponse) => {
-    const userObject = jwt_decode(response.credential) as GoogleUser;
-    console.log({ userObject, response });
-    login(userObject).then(() => {
-      setCookie('jwt', response.credential, { path: '/' });
-      navigate('/catalogue');
+  const logGoogleUser = async (): Promise<void> => {
+    signInWithPopup(auth, provider).then((userCredential: UserCredential) => {
+      addUser(userCredential).then(object => {
+        console.log('addUser then', object);
+        navigate('/catalogue');
+      });
     });
   };
-  return <div id='google-login-button'></div>;
+
+  return (
+    <div>
+      <button onClick={logGoogleUser}>Sign In With Google</button>
+    </div>
+  );
 }

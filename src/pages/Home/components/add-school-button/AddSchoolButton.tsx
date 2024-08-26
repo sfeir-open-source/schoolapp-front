@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import PrimaryButton from '../../../../shared/components/PrimaryButton';
+import PrimaryButton from '@schoolApp/shared/components/PrimaryButton';
 
 interface AddSchoolButtonProps {
   editMode: boolean;

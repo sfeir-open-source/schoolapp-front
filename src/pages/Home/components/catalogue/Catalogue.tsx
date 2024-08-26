@@ -1,21 +1,25 @@
 import { useContext } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
-import { useAddSchool, useGetSchools } from '../../hooks/schools.hook';
-import { useStatusRecord } from '../../hooks/filter-status.hook';
-import AddSchoolButton from '../add-school-button/AddSchoolButton';
-import { EditModeContext } from '../../../../shared/context/edit-mode.context';
-import { useStatus } from '../../hooks/status.hook';
+import {
+  useAddSchool,
+  useGetSchools,
+} from '@schoolApp/pages/Home/hooks/schools.hook';
+import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
+import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/AddSchoolButton';
+import { EditModeContext } from '@schoolApp/shared/context/edit-mode.context';
+import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 
 export function Catalogue() {
   const [selectedStatus, setSelectedStatus] = useStatus();
   const [recordStatus] = useStatusRecord();
-  const { data, error, isLoading } = useGetSchools(selectedStatus);
+  const { data, isLoading, isError } = useGetSchools(selectedStatus);
   const { editMode } = useContext(EditModeContext);
   const addSchool = useAddSchool();
-
-  const handleStatusChange = (newSelectedStatus: string[]) =>
+  const handleStatusChange = (newSelectedStatus: StatusType[]) => {
     setSelectedStatus(newSelectedStatus);
+  };
   const handleAddSchool = () => addSchool.mutate();
 
   return (
@@ -28,7 +32,7 @@ export function Catalogue() {
         />
         <AddSchoolButton editMode={editMode} onClick={handleAddSchool} />
       </div>
-      <Schools schools={data} error={error} isLoading={isLoading} />
+      <Schools schools={data} isError={isError} isLoading={isLoading} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { StatusType } from '../../../shared/interfaces/filter-status.interface';
+import type { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 
 export const useStatusRecord = () =>
   useState<Record<StatusType, string>>({

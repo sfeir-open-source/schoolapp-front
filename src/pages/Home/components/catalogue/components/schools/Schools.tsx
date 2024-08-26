@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
-import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
-import type { School } from '../../../../../../shared/interfaces/schools.interface';
+import { getStatusBackgroundColor } from '@schoolApp/shared/helpers/status-background-color';
+import type { School } from '@schoolApp/shared/interfaces/schools.interface';
 
 interface SchoolsProps {
   schools: School[] | undefined;
-  error: Error | null;
+  isError: boolean;
   isLoading: boolean;
 }
-export default function Schools({ schools, error, isLoading }: SchoolsProps) {
+
+export default function Schools({ schools, isError, isLoading }: SchoolsProps) {
   if (isLoading) return <div>Loading ..</div>;
 
-  if (error) return <div>An error has occurred: {error.message};</div>;
+  if (isError) return <div>An error has occurred</div>;
 
   if (schools)
     return (
@@ -19,8 +20,7 @@ export default function Schools({ schools, error, isLoading }: SchoolsProps) {
           <Link
             to={`/catalogue/${school.id}`}
             key={school.title}
-            className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
-          >
+            className='grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'>
             <img
               className='h-44 w-full rounded-t object-cover'
               src={school.image}
