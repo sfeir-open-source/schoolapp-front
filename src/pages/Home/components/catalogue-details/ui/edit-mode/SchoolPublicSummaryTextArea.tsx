@@ -10,7 +10,7 @@ export default function SchoolPublicSummaryTextArea({
   const handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => onTextAreaChange(event.target.value);
   return (
     <textarea
-      className='resize-none rounded-lg p-1 outline-none sm:bg-blue-300 md:bg-red-300 lg:bg-green-200 xl:bg-yellow-200'
+      className='resize-none rounded-lg border border-slate-400 bg-transparent p-1 p-2 text-slate-600 outline-none'
       value={publicSummary}
       onChange={event => handleTextAreaChange(event)}
     ></textarea>

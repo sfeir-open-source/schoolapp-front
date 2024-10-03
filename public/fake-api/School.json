@@ -4,5 +4,29 @@
   "publicSummary": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam tenetur dignissimos amet saepe minima voluptas sint! Ipsum, hic soluta dicta quod culpa nostrum expedita a accusamus magnam tenetur est aperiam.",
   "status": "active",
   "image": "https://images.unsplash.com/photo-1585092043239-ca829f99c3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-  "duration": 1.53
+  "duration": 1.53,
+  "teacher": 
+    {
+      "name": "Camille Lupin",
+      "picture": "https://i.pravatar.cc/150?img=5",
+      "email": "camille.lupin@gmail.com"
+    }
+  ,
+  "professor": [
+    {
+      "name": "Max Lamenace",
+      "picture": "https://i.pravatar.cc/150?img=7",
+      "email": "camille.lupin@gmail.com"
+    },
+    {
+      "name": "Raphaël Ricottin",
+      "picture": "https://i.pravatar.cc/150?img=8",
+      "email": "raphael.ricottin@gmail.com"
+    },
+    {
+      "name": "Sasha Loup",
+      "picture": "https://i.pravatar.cc/150?img=9",
+      "email": "sasha.loup@gmail.com"
+    }
+  ]
 }
