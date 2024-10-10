@@ -28,7 +28,7 @@ export default function SchoolEditableStatus({ selectedStatus, onStatusChange }:
         {selectedStatus}
       </label>
       {showStatus && (
-        <div className='absolute top-[3rem] right-[-5rem] z-10 w-fit -translate-x-1/2 rounded-lg border border-gray-300 bg-white p-3 shadow-lg dark:bg-gray-700'>
+        <div className='absolute right-[-5rem] top-[3rem] z-10 w-fit -translate-x-1/2 rounded-lg border border-gray-300 bg-white p-3 shadow-lg dark:bg-gray-700'>
           <ul className='flex flex-col gap-2 text-sm'>
             {Object.entries(status).map(([statusType, className]) => (
               <li key={statusType} className='li' dir='rtl'>

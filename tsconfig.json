@@ -16,18 +16,10 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@schoolApp/assets/*": [
-        "src/assets/*"
-      ],
-      "@schoolApp/core/*": [
-        "src/core/*"
-      ],
-      "@schoolApp/pages/*": [
-        "src/pages/*"
-      ],
-      "@schoolApp/shared/*": [
-        "src/shared/*"
-      ],
+      "@schoolApp/assets/*": ["src/assets/*"],
+      "@schoolApp/core/*": ["src/core/*"],
+      "@schoolApp/pages/*": ["src/pages/*"],
+      "@schoolApp/shared/*": ["src/shared/*"]
     }
   },
   "include": ["src", "vite.config.ts"],

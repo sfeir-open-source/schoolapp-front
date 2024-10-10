@@ -27,7 +27,7 @@ export default function CatalogueSchool({ school, editMode, onDelete }: Catalogu
         <div className='flex flex-col gap-1 p-4'>
           <div className='flex h-full flex-col gap-1'>
             <span className='text-xl font-bold text-gray-900 dark:text-white'>{school.title}</span>
-            <p className='font-normal text-gray-700 line-clamp-3 dark:text-gray-400'>{school.publicSummary}</p>
+            <p className='line-clamp-3 font-normal text-gray-700 dark:text-gray-400'>{school.publicSummary}</p>
           </div>
           <div className='flex justify-end'>
             <span className={getStatusBackgroundColor(school.status)}>{school.status}</span>
