@@ -2,6 +2,8 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, UserCredential } from '@firebase/auth';
 import { auth } from '@schoolApp/core/firebase/firebase.config';
 import { addUser } from '@schoolApp/shared/services/user.service';
+import Button from '@schoolApp/shared/components/Button';
+import { AiOutlineGoogle } from 'react-icons/ai';
 
 export default function GoogleLoginButton() {
   const navigate: NavigateFunction = useNavigate();
@@ -25,7 +27,10 @@ export default function GoogleLoginButton() {
 
   return (
     <div>
-      <button onClick={logGoogleUser}>Sign In With Google</button>
+      <Button classes='flex items-center gap-4' variant='primary' onClick={logGoogleUser}>
+        <AiOutlineGoogle />
+        <span>Sign In With Google</span>
+      </Button>
     </div>
   );
 }

@@ -3,11 +3,12 @@ import React from 'react';
 interface ButtonProps {
   children: React.ReactNode;
   variant: 'primary' | 'secondary' | 'danger';
+  classes?: string;
   onClick?: () => void;
 }
 
-const getButtonClasses = (variant: 'primary' | 'secondary' | 'danger') => {
-  const baseClasses = 'text-sm font-medium py-2 px-3 text-center rounded-lg border focus:outline-none focus:ring-2';
+const getButtonClasses = (variant: 'primary' | 'secondary' | 'danger', classes: string) => {
+  const baseClasses = 'text-sm font-medium py-2 px-3 text-center rounded-lg focus:outline-none focus:ring-2';
 
   const variantClasses = {
     primary:
@@ -18,12 +19,12 @@ const getButtonClasses = (variant: 'primary' | 'secondary' | 'danger') => {
       'bg-red-600 text-white hover:bg-red-700 focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900',
   };
 
-  return `${baseClasses} ${variantClasses[variant]}`;
+  return `${baseClasses} ${variantClasses[variant]} ${classes}`;
 };
 
-export default function Button({ children, variant, onClick }: ButtonProps) {
+export default function Button({ children, variant, onClick, classes = '' }: ButtonProps) {
   return (
-    <button onClick={onClick} type='submit' className={getButtonClasses(variant)}>
+    <button onClick={onClick} type='submit' className={getButtonClasses(variant, classes)}>
       {children}
     </button>
   );
