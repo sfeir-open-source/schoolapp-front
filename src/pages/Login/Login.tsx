@@ -1,5 +1,5 @@
 import GoogleLoginButton from './components/GoogleLoginButton';
-import loginSvg from './../../assets/login.svg';
+import loginSvg from '@schoolApp/assets/login.svg';
 
 export default function Login() {
   return (

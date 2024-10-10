@@ -1,17 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useGetSchool } from '../../hooks/schools.hook';
-import { useAuth } from '../../../../core/authentification/auth.hook';
 import CatalogueDetailsReadOnly from './ui/CatalogueDetailsReadOnly';
-import { useEditMode } from '../../hooks/edit-mode.hook';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { EditModeContext } from '../../../../shared/context/edit-mode.context';
 import CatalogueDetailsEditMode from './ui/CatalogueDetailsEditMode';
+import { auth } from '@schoolApp/core/firebase/firebase.config';
 
 export const CatalogueDetails: React.FC = () => {
   const { id } = useParams();
   const { data: school, error, isLoading } = useGetSchool(id);
-  const user = useAuth().user;
-  const { editMode, toggle } = useContext(EditModeContext);
+  const { currentUser: user } = auth;
+  const { editMode } = useContext(EditModeContext);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error has occurred: {error.message};</div>;

@@ -9,17 +9,17 @@ import CatalogueSchool from '../catalogue-school/CatalogueSchool';
 
 interface SchoolsProps {
   schools: School[] | undefined;
-  error: Error | null;
+  isError: boolean;
   isLoading: boolean;
 }
-export default function Schools({ schools, error, isLoading }: SchoolsProps) {
+export default function Schools({ schools, isError, isLoading }: SchoolsProps) {
   const { editMode } = useContext(EditModeContext);
   const mutation = useDeleteSchool();
 
   const handleDeleteSchool = (id: number) => mutation.mutate(id);
   if (isLoading) return <div>Loading ..</div>;
 
-  if (error) return <div>An error has occurred: {error.message};</div>;
+  if (isError) return <div>An error has occurred</div>;
 
   if (schools)
     return (

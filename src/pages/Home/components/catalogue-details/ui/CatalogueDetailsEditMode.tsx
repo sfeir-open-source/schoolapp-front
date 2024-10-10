@@ -7,7 +7,7 @@ import SchoolTitleInput from './edit-mode/SchoolTitleInput';
 import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
 import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
 import SaveButton from './edit-mode/SaveButton';
-import { useUpdateSchool } from '../../../hooks/schools.hook';
+import { useAddSchool } from '../../../hooks/schools.hook';
 import TeacherEdition from './edit-mode/TeacherEdition';
 import CustomInput from '../../../../../shared/components/Input';
 
@@ -19,7 +19,7 @@ interface CatalogueDetailsEditModeProps {
 export default function CatalogueDetailsEditMode({ school, user }: CatalogueDetailsEditModeProps) {
   const [editedSchool, setSchool] = useState(school);
   const [showSaveButton, setShowSaveButton] = useState(false);
-  const mutation = useUpdateSchool();
+  const mutation = useAddSchool();
 
   const handleInputChange = (value: string, property: keyof School) => {
     setShowSaveButton(true);

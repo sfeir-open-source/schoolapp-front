@@ -16,9 +16,6 @@ export default function TeacherEdition({ teacher }: TeacherEditionProps) {
 
   const toggle = () => setOpen(!isOpen);
 
-  const handleInputChange = () => {
-    console.log('HERE');
-  };
   return (
     <>
       <div ref={ref} className='relative flex flex-col gap-1'>

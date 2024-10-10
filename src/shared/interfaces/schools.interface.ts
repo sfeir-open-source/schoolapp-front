@@ -1,24 +1,54 @@
-import { StatusType } from './filter-status.interface';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
 
+/**
+ * School interface
+ */
 export interface School {
-  id: number;
+  id: string;
   title: string;
   publicSummary: string;
   status: StatusType;
   image: string;
   duration: number;
-  teacher: Teacher;
-  professors: Professor[];
+  objectives: string[];
+  prerequisites: string[];
+  document: string;
+  githubLink: string;
+  teachers: string[];
 }
 
-export interface Teacher {
-  name: string;
-  email: string;
-  picture: string;
-}
+/**
+ * School converter for Firestore
+ */
+export const schoolConverter: FirestoreDataConverter<School> = {
+  /**
+   * Convert School from Json object to Firestore document
+   * @param school {School}
+   */
+  toFirestore(school: School): DocumentData {
+    return { ...school };
+  },
 
-export interface Professor {
-  name: string;
-  email: string;
-  picture: string;
-}
+  /**
+   * Convert School from Firestore to Json object
+   * @param snapshot {QueryDocumentSnapshot}
+   * @param options {SnapshotOptions}
+   */
+  fromFirestore(snapshot: QueryDocumentSnapshot, options: SnapshotOptions): School {
+    const data: DocumentData = snapshot.data(options);
+    return {
+      id: snapshot.id,
+      title: data.title,
+      publicSummary: data.publicSummary,
+      status: data.status,
+      image: data.image,
+      duration: data.duration,
+      objectives: data.objectives,
+      prerequisites: data.prerequisites,
+      document: data.document,
+      githubLink: data.githubLink,
+      teachers: data.teachers,
+    };
+  },
+};

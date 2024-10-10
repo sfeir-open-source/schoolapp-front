@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <EditModeContext.Provider value={{ editMode, toggle }}>
-      <div className={'h-full w-full ' + (editMode ? 'bg-slate-50' : 'bg-slate-100')}>
+      <div className={'h-[100vh] w-full ' + (editMode ? 'bg-slate-50' : 'bg-slate-100')}>
         <Routes>
           <Route path='/' element={<Login />}></Route>
           <Route element={<ProtectedRoutes />}>

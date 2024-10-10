@@ -1,8 +1,8 @@
-import { useAuth } from '../../../../core/authentification/auth.hook';
 import { Link } from 'react-router-dom';
-import { AiFillEye, AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit, AiFillEye } from 'react-icons/ai';
 import { MouseEventHandler } from 'react';
-import Button from '../../../../shared/components/Button';
+import { auth } from '@schoolApp/core/firebase/firebase.config';
+import Button from '@schoolApp/shared/components/Button';
 
 interface HeaderProps {
   editMode: boolean;
@@ -10,13 +10,13 @@ interface HeaderProps {
 }
 
 export default function Header({ editMode, toggleEditMode }: HeaderProps) {
-  const { logout, user } = useAuth();
+  const { signOut, currentUser: user } = auth;
 
   return (
     <header
       className={
         'fixed z-50 flex w-full flex-wrap items-center justify-between border border-b border-slate-200 p-4 backdrop-blur-sm ' +
-        (editMode ? 'bg-slate-50/70' : 'bg-slate-100/70')
+        (editMode ? 'bg-slate-200/70' : 'bg-slate-100/70')
       }
     >
       <Link to={`/catalogue`}>
@@ -36,12 +36,12 @@ export default function Header({ editMode, toggleEditMode }: HeaderProps) {
               <AiFillEye size={20} />
             </button>
           )}
-          <span className='hidden md:flex'>{user?.name}</span>
+          <span className='hidden md:flex'>{user?.displayName}</span>
           <div>
-            <img className='w-7 rounded-full' src={user?.picture} />
+            <img className='w-7 rounded-full' src={user?.photoURL ?? ''} alt={'User profile picture'} />
           </div>
         </div>
-        <Button variant='primary' onClick={logout}>
+        <Button variant='primary' onClick={signOut}>
           Sign Out
         </Button>
       </div>

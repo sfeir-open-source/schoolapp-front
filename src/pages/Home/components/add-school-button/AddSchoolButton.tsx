@@ -1,4 +1,4 @@
-import Button from '../../../../shared/components/Button';
+import Button from '@schoolApp/shared/components/Button';
 
 interface AddSchoolButtonProps {
   editMode: boolean;

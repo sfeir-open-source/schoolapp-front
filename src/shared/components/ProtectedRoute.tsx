@@ -1,12 +1,22 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../../core/authentification/auth.hook';
+import { useAuthentication } from '../hooks/authentification.hook';
 
 export const ProtectedRoutes = () => {
-  const auth = useAuth();
+  const { loading, isAuthenticated } = useAuthentication();
 
-  if (!auth.user) {
-    // user is not authenticated
+  if (loading) {
+    return (
+      <>
+        <div className='flex h-screen items-center justify-center'>
+          <div className='h-20 w-20 animate-ping rounded-full bg-cyan-500'></div>
+        </div>
+      </>
+    );
+  }
+
+  if (!isAuthenticated) {
     return <Navigate to='/' />;
   }
+
   return <Outlet />;
 };
