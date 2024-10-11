@@ -1,24 +1,18 @@
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import './index.scss';
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import DynamicProviders from './shared/components/DynamicProvider';
+import { EditModeProvider } from './shared/providers/EditModeProvider';
+import { AppQueryClientProvider } from './shared/providers/AppQueryClientProvider';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+const providers = [AppQueryClientProvider, BrowserRouter, EditModeProvider];
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+  <DynamicProviders providers={providers}>
+    <App />
     <ReactQueryDevtools initialIsOpen={false} />
-  </QueryClientProvider>
+  </DynamicProviders>
 );

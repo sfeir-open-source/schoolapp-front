@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 interface EditModeContextType {
   editMode: boolean;
