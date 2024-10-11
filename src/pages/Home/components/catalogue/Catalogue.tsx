@@ -4,7 +4,7 @@ import Schools from './components/schools/Schools';
 import { useAddSchool, useGetSchools } from '@schoolApp/pages/Home/hooks/schools.hook';
 import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
 import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/AddSchoolButton';
-import { EditModeContext } from '@schoolApp/shared/context/edit-mode.context';
+import { EditModeContext, useEditMode } from '@schoolApp/shared/context/edit-mode.context';
 import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 
@@ -13,7 +13,7 @@ export function Catalogue() {
   const [searchTerm, setSearchTerm] = useState('');
   const [recordStatus] = useStatusRecord();
   const { data, isError, isLoading } = useGetSchools(selectedStatus, searchTerm);
-  const { editMode } = useContext(EditModeContext);
+  const { editMode } = useEditMode();
   const addSchool = useAddSchool();
 
   const handleStatusChange = (newSelectedStatus: string[]) => setSelectedStatus(newSelectedStatus);

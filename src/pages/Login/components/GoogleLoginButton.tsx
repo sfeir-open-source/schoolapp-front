@@ -29,7 +29,7 @@ export default function GoogleLoginButton() {
     <div>
       <Button classes='flex items-center gap-4' variant='primary' onClick={logGoogleUser}>
         <AiOutlineGoogle />
-        <span>Sign In With Google</span>
+        <span>Sign Up With Google</span>
       </Button>
     </div>
   );

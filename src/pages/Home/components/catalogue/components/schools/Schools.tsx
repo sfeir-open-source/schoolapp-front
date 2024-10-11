@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import type { School } from '../../../../../../shared/interfaces/schools.interface';
 import { useContext, useState } from 'react';
-import { EditModeContext } from '../../../../../../shared/context/edit-mode.context';
+import { EditModeContext, useEditMode } from '../../../../../../shared/context/edit-mode.context';
 import IconDeleteButton from '../icon-delete-button/IconDeleteButton';
 import { useDeleteSchool } from '../../../../hooks/schools.hook';
 import CatalogueSchool from '../catalogue-school/CatalogueSchool';
@@ -13,7 +13,7 @@ interface SchoolsProps {
   isLoading: boolean;
 }
 export default function Schools({ schools, isError, isLoading }: SchoolsProps) {
-  const { editMode } = useContext(EditModeContext);
+  const { editMode } = useEditMode();
   const mutation = useDeleteSchool();
 
   const handleDeleteSchool = (id: number) => mutation.mutate(id);

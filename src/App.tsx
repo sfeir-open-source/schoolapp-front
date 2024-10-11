@@ -4,16 +4,13 @@ import { Catalogue } from './pages/Home/components/catalogue/Catalogue';
 import Login from './pages/Login/Login';
 import { Routes, Route } from 'react-router-dom';
 import { ProtectedRoutes } from './shared/components/ProtectedRoute';
-import { EditModeContext } from './shared/context/edit-mode.context';
-import { useEditMode } from './pages/Home/hooks/edit-mode.hook';
 import { Toaster } from 'react-hot-toast';
+import { EditModeProvider } from './shared/providers/EditModeProvider';
 
 export default function App() {
-  const { editMode, toggle } = useEditMode();
-
   return (
-    <EditModeContext.Provider value={{ editMode, toggle }}>
-      <div className={'h-[100vh] w-full ' + (editMode ? 'bg-slate-50' : 'bg-slate-100')}>
+    <EditModeProvider>
+      <div className='h-[100vh] w-full'>
         <Routes>
           <Route path='/' element={<Login />}></Route>
           <Route element={<ProtectedRoutes />}>
@@ -25,6 +22,6 @@ export default function App() {
         </Routes>
         <Toaster />
       </div>
-    </EditModeContext.Provider>
+    </EditModeProvider>
   );
 }
