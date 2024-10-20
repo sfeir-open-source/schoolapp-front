@@ -4,6 +4,7 @@ import IconDeleteButton from '../icon-delete-button/IconDeleteButton';
 import { School } from '../../../../../../shared/interfaces/schools.interface';
 import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import ConfirmationModal from '../../../../../../shared/components/ConfirmationModal';
+import ImageSchool from '../image-school/ImageSchool';
 
 interface CatalogueSchoolProps {
   school: School;
@@ -22,7 +23,7 @@ export default function CatalogueSchool({ school, editMode, onDelete }: Catalogu
       >
         <IconDeleteButton isShown={editMode} onButtonClick={() => setVisible(true)} />
         <div>
-          <img className='h-44 w-full rounded-t object-cover' src={school.image} alt={`${school.title}_image`} />
+          <ImageSchool src={school.image} alt={`${school.title}_image`} />
         </div>
         <div className='flex flex-col gap-1 p-4'>
           <div className='flex h-full flex-col gap-1'>

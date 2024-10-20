@@ -1,9 +1,5 @@
-import { Link } from 'react-router-dom';
-import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
 import type { School } from '../../../../../../shared/interfaces/schools.interface';
-import { useContext, useState } from 'react';
-import { EditModeContext, useEditMode } from '../../../../../../shared/context/edit-mode.context';
-import IconDeleteButton from '../icon-delete-button/IconDeleteButton';
+import { useEditMode } from '../../../../../../shared/context/edit-mode.context';
 import { useDeleteSchool } from '../../../../hooks/schools.hook';
 import CatalogueSchool from '../catalogue-school/CatalogueSchool';
 
