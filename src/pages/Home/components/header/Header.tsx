@@ -16,7 +16,7 @@ export default function Header({ editMode, toggleEditMode }: HeaderProps) {
     <header
       className={
         'fixed z-50 flex w-full flex-wrap items-center justify-between border border-b border-slate-200 p-4 backdrop-blur-sm ' +
-        (editMode ? 'bg-slate-200/70' : 'bg-slate-100/70')
+        (editMode ? 'bg-slate-50/70' : 'bg-stone-50/70')
       }
     >
       <Link to={`/catalogue`}>

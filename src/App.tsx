@@ -10,7 +10,7 @@ import { useEditMode } from './shared/context/edit-mode.context';
 export default function App() {
   const { editMode } = useEditMode();
   return (
-    <div className={'h-[100vh] w-full ' + (editMode ? 'bg-slate-50' : 'bg-slate-100')}>
+    <div className={'h-[100vh] w-full ' + (editMode ? 'bg-slate-50' : 'bg-stone-100')}>
       <Routes>
         <Route path='/' element={<Login />}></Route>
         <Route element={<ProtectedRoutes />}>

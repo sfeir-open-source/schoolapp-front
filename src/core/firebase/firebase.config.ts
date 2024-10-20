@@ -1,5 +1,5 @@
 import { FirebaseApp, FirebaseOptions, initializeApp } from 'firebase/app';
-import { Auth, connectAuthEmulator, getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Auth, connectAuthEmulator, getAuth } from 'firebase/auth';
 import { connectFirestoreEmulator, Firestore, getFirestore } from 'firebase/firestore';
 import { connectStorageEmulator, FirebaseStorage, getStorage } from 'firebase/storage';
 
@@ -15,18 +15,6 @@ const firebaseConfig: FirebaseOptions = {
 const app: FirebaseApp = initializeApp(firebaseConfig);
 const firestore: Firestore = getFirestore(app);
 const auth: Auth = getAuth(app);
-onAuthStateChanged(auth, user => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    console.log({ user });
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-});
 const storage: FirebaseStorage = getStorage(app);
 
 if (location.hostname === 'localhost') {
