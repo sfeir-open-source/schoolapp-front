@@ -10,7 +10,9 @@ interface HeaderProps {
 }
 
 export default function Header({ editMode, toggleEditMode }: HeaderProps) {
-  const { signOut, currentUser: user } = auth;
+  const { currentUser: user } = auth;
+
+  const handleSignOutButton = async () => await auth.signOut();
 
   return (
     <header
@@ -41,7 +43,7 @@ export default function Header({ editMode, toggleEditMode }: HeaderProps) {
             <img className='w-7 rounded-full' src={user?.photoURL ?? ''} alt={'User profile picture'} />
           </div>
         </div>
-        <Button variant='primary' onClick={signOut}>
+        <Button variant='primary' onClick={handleSignOutButton}>
           Sign Out
         </Button>
       </div>

@@ -1,17 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthentication } from '../hooks/authentification.hook';
+import { Loader } from './Loader';
 
 export const ProtectedRoutes = () => {
   const { loading, isAuthenticated } = useAuthentication();
 
   if (loading) {
-    return (
-      <>
-        <div className='flex h-screen items-center justify-center'>
-          <div className='h-20 w-20 animate-ping rounded-full bg-cyan-500'></div>
-        </div>
-      </>
-    );
+    return <Loader />;
   }
 
   if (!isAuthenticated) {
