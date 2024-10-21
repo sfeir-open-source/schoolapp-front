@@ -1,8 +1,15 @@
 import { School } from '@schoolApp/shared//interfaces/schools.interface';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
-import { addSchool, deleteSchool, getAllSchools, getSchoolByUid } from '@schoolApp/shared/services/school.service';
+import {
+  addSchool,
+  deleteSchool,
+  getAllSchools,
+  getSchoolByUid,
+  updateSchool,
+} from '@schoolApp/shared/services/school.service';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { QueryDocumentSnapshot } from 'firebase/firestore';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 /**
@@ -40,6 +47,17 @@ export const useAddSchool = () => {
     onError: err => {
       console.log(err);
     },
+  });
+};
+
+/**
+ * Hook to create an empty school
+ */
+export const useUpdateSchool = () => {
+  return useMutation({
+    mutationFn: (school: School) => updateSchool(school.id, school),
+    onSuccess: school => toast.success(`La School a été editée !`),
+    onError: err => toast.error(`Aie ! Il a eu un problème durant l'édition de la school`),
   });
 };
 

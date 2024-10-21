@@ -1,5 +1,6 @@
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
+import { User } from './users.interface';
 
 /**
  * School interface
@@ -15,7 +16,8 @@ export interface School {
   prerequisites: string[];
   document: string;
   githubLink: string;
-  teachers: string[];
+  teachers: User[];
+  referents: User[];
 }
 
 /**
@@ -49,6 +51,7 @@ export const schoolConverter: FirestoreDataConverter<School> = {
       document: data.document,
       githubLink: data.githubLink,
       teachers: data.teachers,
+      referents: data.referents,
     };
   },
 };
