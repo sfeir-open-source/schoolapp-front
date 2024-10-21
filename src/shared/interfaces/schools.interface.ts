@@ -16,6 +16,7 @@ export interface School {
   prerequisites: string[];
   document: string;
   githubLink: string;
+  driveLink: string;
   teachers: User[];
   referents: User[];
 }
@@ -50,6 +51,7 @@ export const schoolConverter: FirestoreDataConverter<School> = {
       prerequisites: data.prerequisites,
       document: data.document,
       githubLink: data.githubLink,
+      driveLink: data.driveLink,
       teachers: data.teachers,
       referents: data.referents,
     };

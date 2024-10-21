@@ -20,7 +20,7 @@ export default function CatalogueDetailsImage({ src, alt }: CatalogueDetailsImag
   return (
     <div className='relative'>
       {loading && (
-        <div className='absolute flex h-60 w-full items-center justify-center rounded bg-gray-300 sm:h-72 lg:h-96 dark:bg-gray-700'>
+        <div className='absolute flex h-60 w-full items-center justify-center  bg-gray-300 sm:h-72 lg:h-96 dark:bg-gray-700'>
           <svg
             className='h-10 w-10 text-gray-200 dark:text-gray-600'
             aria-hidden='true'
@@ -33,7 +33,7 @@ export default function CatalogueDetailsImage({ src, alt }: CatalogueDetailsImag
         </div>
       )}
       <img
-        className={`mb-4 h-60 w-full rounded-lg object-cover sm:h-72 lg:h-96 ${loading ? 'invisible' : 'visible'}`}
+        className={`h-40 w-full object-cover ${loading ? 'invisible' : 'visible'}`}
         style={{ objectPosition: '0 10%' }}
         src={imageSrc}
         alt={alt}

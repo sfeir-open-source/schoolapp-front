@@ -20,6 +20,8 @@ export function Catalogue() {
   const handleSearchTermChange = (searchTerm: string) => setSearchTerm(searchTerm);
   const handleAddSchool = () => addSchool.mutate();
 
+  console.log({ data });
+
   return (
     <div className='mt-16 flex flex-col gap-4 p-4'>
       <div className='grid w-full grid-cols-3 justify-items-center'>

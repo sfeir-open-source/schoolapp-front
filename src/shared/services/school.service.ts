@@ -1,7 +1,7 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 import { firestore } from '@schoolApp/core/firebase/firebase.config';
-import { School, schoolConverter } from '@schoolApp/shared/interfaces/schools.interface';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import { School, schoolConverter } from '@schoolApp/shared/interfaces/schools.interface';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
 
 /**
  * Return all schools corresponding to array of status, return all if no status specified
@@ -61,4 +61,6 @@ const EMPTY_SCHOOL: Partial<School> = {
   githubLink: '',
   teachers: [],
   status: 'proposal',
+  referents: [],
+  driveLink: '',
 };

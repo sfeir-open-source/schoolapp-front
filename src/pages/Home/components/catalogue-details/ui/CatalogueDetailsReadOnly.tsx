@@ -2,13 +2,18 @@ import { getStatusBackgroundColor } from '../../../../../shared/helpers/status-b
 import { AiFillClockCircle } from 'react-icons/ai';
 import { School } from '../../../../../shared/interfaces/schools.interface';
 import { GoogleUser } from '../../../../../shared/interfaces/google-user';
+import UserCircleManager from './edit-mode/UserCircleManager';
+import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
+import { User } from '@schoolApp/shared/interfaces/users.interface';
 
 interface CatalogueDetailsReadOnlyProps {
   school: School;
-  user: GoogleUser | null;
+  user: User | null;
 }
 
 export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDetailsReadOnlyProps) {
+  const userQueryResult = useGetUsers();
+
   return (
     <div className='g-4 mt-20 flex h-[100vh] flex-col p-4 sm:px-12 md:px-28 lg:px-40 xl:px-[30rem]'>
       <div className='flex items-center justify-between'>
@@ -26,30 +31,13 @@ export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDeta
           ></img>
           <div className='bottom-0 flex w-full flex-col gap-4 sm:flex-row'>
             <div className='flex w-full justify-between gap-4 sm:w-auto sm:justify-start'>
-              <div className='flex w-fit gap-4 rounded-lg bg-white px-2 py-2 drop-shadow-md'>
-                <div className='g-4 flex items-center'>
-                  <span className='text-sm font-bold'> Teachers</span>
-                </div>
-                <img src={user?.picture} className='w-8 rounded-full' />
+              <div className='flex flex-col gap-1'>
+                <h2 className='font-medium'>Proffesseur</h2>
+                <UserCircleManager users={school.teachers} userQueryResult={userQueryResult} readonly={true} />
               </div>
-              <div
-                className=' w-fit rounded-lg bg-white px-3 py-2 pr-6 drop-shadow-md'
-                style={{ display: 'grid', gridTemplateColumns: '6rem 1fr' }}
-              >
-                <div className='g-4 flex items-center'>
-                  <span className='text-sm font-bold'> Professors</span>
-                </div>
-                <div className='flex items-center'>
-                  <div className='w-4'>
-                    <img src={user?.picture} className='min-w-[1.7rem] rounded-full' />
-                  </div>
-                  <div className='w-4'>
-                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
-                  </div>
-                  <div className='w-4'>
-                    <img src={user?.picture} className='min-w-[2rem] rounded-full border-2 border-white' />
-                  </div>
-                </div>
+              <div className='flex flex-col gap-1'>
+                <h2 className='font-medium'>Réferents</h2>
+                <UserCircleManager users={school.referents} userQueryResult={userQueryResult} readonly={true} />
               </div>
             </div>
             <div className='g-4 font-small flex w-fit items-center rounded-lg bg-white px-4 py-2 drop-shadow-md sm:ml-auto sm:justify-end'>

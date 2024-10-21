@@ -56,8 +56,11 @@ export const useAddSchool = () => {
 export const useUpdateSchool = () => {
   return useMutation({
     mutationFn: (school: School) => updateSchool(school.id, school),
-    onSuccess: school => toast.success(`La School a été editée !`),
-    onError: err => toast.error(`Aie ! Il a eu un problème durant l'édition de la school`),
+    onSuccess: () => toast.success(`La School a été editée !`),
+    onError: (err, school) => {
+      console.log(err, school);
+      toast.error(`Aie ! Il a eu un problème durant l'édition de la school`);
+    },
   });
 };
 
