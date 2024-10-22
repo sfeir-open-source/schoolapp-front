@@ -60,11 +60,6 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
     setShowSaveButton(false);
   };
 
-  const updateSchoolDuration = (event: ChangeEvent<HTMLInputElement>) => {
-    setSchool(school => ({ ...school, duration: Number(event.target.value) }));
-    setShowSaveButton(true);
-  };
-
   return (
     <div className='mt-[4.4rem]'>
       <CatalogueDetailsImage src={editedSchool.image} alt={`${editedSchool.title}_image`} />
