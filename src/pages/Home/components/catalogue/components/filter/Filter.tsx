@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import { AiFillFilter } from 'react-icons/ai';
 import './Filter.scss';
-import type { StatusType } from '../../../../../../shared/interfaces/filter-status.interface';
-import Button from '../../../../../../shared/components/Button';
+import type { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import Button from '@schoolApp/shared/components/Button';
 
 interface FilterProps {
   onStatusChange: (status: string[]) => void;

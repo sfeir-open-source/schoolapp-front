@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useGetSchool } from '../../hooks/schools.hook';
+import { useGetSchool } from '@schoolApp/pages/Home/hooks/schools.hook';
 import CatalogueDetailsReadOnly from './ui/CatalogueDetailsReadOnly';
-import { useContext } from 'react';
-import { EditModeContext, useEditMode } from '../../../../shared/context/edit-mode.context';
+import { useEditMode } from '@schoolApp/shared/context/edit-mode.context';
 import CatalogueDetailsEditMode from './ui/CatalogueDetailsEditMode';
-import { auth } from '@schoolApp/core/firebase/firebase.config';
+import { FC } from 'react';
 
 export const CatalogueDetails: React.FC = () => {
   const { id } = useParams();

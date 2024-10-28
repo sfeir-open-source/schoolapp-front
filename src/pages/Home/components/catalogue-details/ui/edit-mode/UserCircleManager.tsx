@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
-import { useOutsideClick } from '../../../../hooks/useOutsideClick';
-import CustomInput from '../../../../../../shared/components/Input';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { useOutsideClick } from '@schoolApp/pages/Home/hooks/useOutsideClick';
+import CustomInput from '@schoolApp/shared/components/Input';
 import { User } from '@schoolApp/shared/interfaces/users.interface';
 import { UseQueryResult } from '@tanstack/react-query';
 

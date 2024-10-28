@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthentication } from '../hooks/authentification.hook';
+import { useAuthentication } from '@schoolApp/shared/hooks/authentification.hook';
 import { Loader } from './Loader';
 
 export const ProtectedRoutes = () => {

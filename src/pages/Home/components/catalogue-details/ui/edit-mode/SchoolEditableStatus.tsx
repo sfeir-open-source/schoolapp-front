@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { StatusType } from '../../../../../../shared/interfaces/filter-status.interface';
-import { useStatusRecord } from '../../../../hooks/filter-status.hook';
-import { useOutsideClick } from '../../../../hooks/useOutsideClick';
-import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
+import { useOutsideClick } from '@schoolApp/pages/Home/hooks/useOutsideClick';
+import { getStatusBackgroundColor } from '@schoolApp/shared/helpers/status-background-color';
 
 interface SchoolEditableStatusProps {
   selectedStatus: StatusType;

@@ -1,10 +1,8 @@
-import { getStatusBackgroundColor } from '../../../../../shared/helpers/status-background-color';
+import { getStatusBackgroundColor } from '@schoolApp/shared/helpers/status-background-color';
 import { AiFillClockCircle } from 'react-icons/ai';
-import { School } from '../../../../../shared/interfaces/schools.interface';
-import { GoogleUser } from '../../../../../shared/interfaces/google-user';
+import { School } from '@schoolApp/shared/interfaces/schools.interface';
 import UserCircleManager from './edit-mode/UserCircleManager';
 import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
-import { User } from '@schoolApp/shared/interfaces/users.interface';
 
 interface CatalogueDetailsReadOnlyProps {
   school: School;

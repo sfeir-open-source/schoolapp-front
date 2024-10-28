@@ -1,7 +1,7 @@
-import type { School } from '../../../../../../shared/interfaces/schools.interface';
-import { useEditMode } from '../../../../../../shared/context/edit-mode.context';
-import { useDeleteSchool } from '../../../../hooks/schools.hook';
-import CatalogueSchool from '../catalogue-school/CatalogueSchool';
+import type { School } from '@schoolApp/shared/interfaces/schools.interface';
+import { useEditMode } from '@schoolApp/shared/context/edit-mode.context';
+import { useDeleteSchool } from '@schoolApp/pages/Home/hooks/schools.hook';
+import CatalogueSchool from '@schoolApp/pages/Home/components/catalogue/components/catalogue-school/CatalogueSchool';
 
 interface SchoolsProps {
   schools: School[] | undefined;

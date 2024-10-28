@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import IconDeleteButton from '../icon-delete-button/IconDeleteButton';
-import { School } from '../../../../../../shared/interfaces/schools.interface';
-import { getStatusBackgroundColor } from '../../../../../../shared/helpers/status-background-color';
-import ConfirmationModal from '../../../../../../shared/components/ConfirmationModal';
-import ImageSchool from '../image-school/ImageSchool';
+import IconDeleteButton from '@schoolApp/pages/Home/components/catalogue/components/icon-delete-button/IconDeleteButton';
+import { School } from '@schoolApp/shared/interfaces/schools.interface';
+import { getStatusBackgroundColor } from '@schoolApp/shared/helpers/status-background-color';
+import ConfirmationModal from '@schoolApp/shared/components/ConfirmationModal';
+import ImageSchool from '@schoolApp/pages/Home/components/catalogue/components/image-school/ImageSchool';
 
 interface CatalogueSchoolProps {
   school: School;

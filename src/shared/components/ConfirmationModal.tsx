@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { School } from '../interfaces/schools.interface';
+import { School } from '@schoolApp/shared/interfaces/schools.interface';
 import { AiFillDelete, AiOutlineClose } from 'react-icons/ai';
 import Button from './Button';
 

@@ -1,11 +1,10 @@
-import { GoogleUser } from '../../../../../shared/interfaces/google-user';
 import { ChangeEvent, useState } from 'react';
-import { StatusType } from '../../../../../shared/interfaces/filter-status.interface';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
 import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
 import SaveButton from './edit-mode/SaveButton';
-import { useUpdateSchool } from '../../../hooks/schools.hook';
-import CustomInput from '../../../../../shared/components/Input';
+import { useUpdateSchool } from '@schoolApp/pages/Home/hooks/schools.hook';
+import CustomInput from '@schoolApp/shared/components/Input';
 import CatalogueDetailsImage from './edit-mode/CatlogueDetailsImage';
 import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
 import { User } from '@schoolApp/shared/interfaces/users.interface';
