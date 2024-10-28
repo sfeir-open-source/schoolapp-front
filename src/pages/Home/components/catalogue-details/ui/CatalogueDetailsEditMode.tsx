@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
 import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
@@ -22,10 +22,9 @@ import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/
 
 interface CatalogueDetailsEditModeProps {
   school: School;
-  user: GoogleUser | null;
 }
 
-export default function CatalogueDetailsEditMode({ school, user }: CatalogueDetailsEditModeProps) {
+export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEditModeProps) {
   const [editedSchool, setSchool] = useState(school);
   const [showSaveButton, setShowSaveButton] = useState(false);
   const mutation = useUpdateSchool();
@@ -57,11 +56,6 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
   const handleSaveButtonClick = () => {
     mutation.mutate(editedSchool);
     setShowSaveButton(false);
-  };
-
-  const updateSchoolDuration = (event: ChangeEvent<HTMLInputElement>) => {
-    setSchool(school => ({ ...school, duration: Number(event.target.value) }));
-    setShowSaveButton(true);
   };
 
   return (
@@ -197,8 +191,7 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
         </Properties>
         <textarea
           className='w-full resize-none border-b border-t border-slate-300 p-1 p-2 text-slate-600 outline-none'
-          placeholder='Écrire un commentaire ...'
-        ></textarea>
+          placeholder='Écrire un commentaire ...'></textarea>
 
         <SchoolPublicSummaryTextArea
           publicSummary={editedSchool.publicSummary}

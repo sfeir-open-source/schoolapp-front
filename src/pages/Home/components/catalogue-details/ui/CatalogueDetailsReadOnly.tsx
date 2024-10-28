@@ -6,10 +6,9 @@ import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
 
 interface CatalogueDetailsReadOnlyProps {
   school: School;
-  user: User | null;
 }
 
-export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDetailsReadOnlyProps) {
+export default function CatalogueDetailsReadOnly({ school }: CatalogueDetailsReadOnlyProps) {
   const userQueryResult = useGetUsers();
 
   return (
@@ -25,12 +24,11 @@ export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDeta
             className='mb-4 h-60 w-full rounded-lg object-cover sm:h-72 lg:h-96'
             style={{ objectPosition: '0 10%' }}
             src={school.image}
-            alt={`${school.title}_image`}
-          ></img>
+            alt={`${school.title}_image`}></img>
           <div className='bottom-0 flex w-full flex-col gap-4 sm:flex-row'>
             <div className='flex w-full justify-between gap-4 sm:w-auto sm:justify-start'>
               <div className='flex flex-col gap-1'>
-                <h2 className='font-medium'>Proffesseur</h2>
+                <h2 className='font-medium'>Professeur</h2>
                 <UserCircleManager users={school.teachers} userQueryResult={userQueryResult} readonly={true} />
               </div>
               <div className='flex flex-col gap-1'>
