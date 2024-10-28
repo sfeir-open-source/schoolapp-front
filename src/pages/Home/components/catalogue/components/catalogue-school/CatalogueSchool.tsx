@@ -9,8 +9,9 @@ import ImageSchool from '@schoolApp/pages/Home/components/catalogue/components/i
 interface CatalogueSchoolProps {
   school: School;
   editMode: boolean;
-  onDelete: (schoolId: number) => void;
+  onDelete: (schoolId: string) => void;
 }
+
 export default function CatalogueSchool({ school, editMode, onDelete }: CatalogueSchoolProps) {
   const [visible, setVisible] = useState<boolean>(false);
 
@@ -19,8 +20,7 @@ export default function CatalogueSchool({ school, editMode, onDelete }: Catalogu
       <Link
         to={`/catalogue/${school.id}`}
         key={school.id}
-        className='relative grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'
-      >
+        className='relative grid max-h-sm-card w-full grid-rows-2 gap-4  rounded-lg border bg-white shadow-lg  lg:max-h-lg-card lg:max-w-xs'>
         <IconDeleteButton isShown={editMode} onButtonClick={() => setVisible(true)} />
         <div>
           <ImageSchool src={school.image} alt={`${school.title}_image`} />

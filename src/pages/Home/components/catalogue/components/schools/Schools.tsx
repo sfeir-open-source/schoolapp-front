@@ -8,11 +8,12 @@ interface SchoolsProps {
   isError: boolean;
   isLoading: boolean;
 }
+
 export default function Schools({ schools, isError, isLoading }: SchoolsProps) {
   const { editMode } = useEditMode();
   const mutation = useDeleteSchool();
 
-  const handleDeleteSchool = (id: number) => mutation.mutate(id);
+  const handleDeleteSchool = (id: string) => mutation.mutate(id);
   if (isLoading) return <div>Loading ..</div>;
 
   if (isError) return <div>An error has occurred</div>;

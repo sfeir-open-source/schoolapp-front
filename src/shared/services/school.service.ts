@@ -18,7 +18,7 @@ export const getAllSchools = (status?: StatusType[]) => {
  * Return a school attached to an uid
  * @param uid {string}
  */
-export const getSchoolByUid = (uid: string) => {
+export const getSchoolByUid = (uid: string | undefined) => {
   return getDoc(doc(firestore, `schools/${uid}`).withConverter(schoolConverter));
 };
 

@@ -28,7 +28,7 @@ export const useGetSchools = (status: StatusType[]) => {
  * Hook to get a school by its uid
  * @param uid {string}
  */
-export const useGetSchool = (uid: string) => {
+export const useGetSchool = (uid: string | undefined) => {
   return useQuery({
     queryFn: () => getSchoolByUid(uid),
     select: school => school.data(),
@@ -66,12 +66,11 @@ export const useUpdateSchool = () => {
 
 /**
  * Hook to delete a school
- * @param uid {string}
  */
-export const useDeleteSchool = (uid: string) => {
+export const useDeleteSchool = () => {
   const navigate = useNavigate();
   return useMutation({
-    mutationFn: () => deleteSchool(uid),
+    mutationFn: (uid: string) => deleteSchool(uid),
     onSuccess: () => {
       navigate(`/catalogue`);
     },
