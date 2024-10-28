@@ -1,7 +1,19 @@
 import { firestore } from '@schoolApp/core/firebase/firebase.config';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import { School, schoolConverter } from '@schoolApp/shared/interfaces/schools.interface';
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  QuerySnapshot,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 
 /**
  * Return all schools corresponding to array of status, return all if no status specified
@@ -11,7 +23,16 @@ export const getAllSchools = (status?: StatusType[]) => {
   if (!status?.length) {
     return getDocs(collection(firestore, 'schools').withConverter(schoolConverter));
   }
+
   return getDocs(query(collection(firestore, 'schools').withConverter(schoolConverter), where('status', 'in', status)));
+};
+
+export const subscribeToSchools = (callback: (snapshot: QuerySnapshot<School>) => void, status?: StatusType[]) => {
+  const schoolCollection = collection(firestore, 'schools').withConverter(schoolConverter);
+
+  const q = status?.length ? query(schoolCollection, where('status', 'in', status)) : schoolCollection;
+
+  return onSnapshot(q, callback);
 };
 
 /**

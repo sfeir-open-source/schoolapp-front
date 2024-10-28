@@ -9,7 +9,7 @@ import ImageSchool from '../image-school/ImageSchool';
 interface CatalogueSchoolProps {
   school: School;
   editMode: boolean;
-  onDelete: (schoolId: number) => void;
+  onDelete: (schoolId: string) => void;
 }
 export default function CatalogueSchool({ school, editMode, onDelete }: CatalogueSchoolProps) {
   const [visible, setVisible] = useState<boolean>(false);

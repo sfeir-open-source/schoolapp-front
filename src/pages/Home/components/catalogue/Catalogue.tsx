@@ -7,20 +7,19 @@ import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/
 import { EditModeContext, useEditMode } from '@schoolApp/shared/context/edit-mode.context';
 import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function Catalogue() {
   const [selectedStatus, setSelectedStatus] = useStatus();
   const [searchTerm, setSearchTerm] = useState('');
   const [recordStatus] = useStatusRecord();
-  const { data, isError, isLoading } = useGetSchools(selectedStatus, searchTerm);
+  const { data, isError, isLoading } = useGetSchools(selectedStatus);
   const { editMode } = useEditMode();
   const addSchool = useAddSchool();
 
   const handleStatusChange = (newSelectedStatus: string[]) => setSelectedStatus(newSelectedStatus);
   const handleSearchTermChange = (searchTerm: string) => setSearchTerm(searchTerm);
   const handleAddSchool = () => addSchool.mutate();
-
-  console.log({ data });
 
   return (
     <div className='mt-16 flex flex-col gap-4 p-4'>

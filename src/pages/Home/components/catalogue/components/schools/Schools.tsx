@@ -2,6 +2,7 @@ import type { School } from '../../../../../../shared/interfaces/schools.interfa
 import { useEditMode } from '../../../../../../shared/context/edit-mode.context';
 import { useDeleteSchool } from '../../../../hooks/schools.hook';
 import CatalogueSchool from '../catalogue-school/CatalogueSchool';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface SchoolsProps {
   schools: School[] | undefined;
@@ -9,10 +10,11 @@ interface SchoolsProps {
   isLoading: boolean;
 }
 export default function Schools({ schools, isError, isLoading }: SchoolsProps) {
+  const queryClient = useQueryClient();
   const { editMode } = useEditMode();
-  const mutation = useDeleteSchool();
+  const mutation = useDeleteSchool(queryClient);
 
-  const handleDeleteSchool = (id: number) => mutation.mutate(id);
+  const handleDeleteSchool = (id: string) => mutation.mutate(id);
   if (isLoading) return <div>Loading ..</div>;
 
   if (isError) return <div>An error has occurred</div>;

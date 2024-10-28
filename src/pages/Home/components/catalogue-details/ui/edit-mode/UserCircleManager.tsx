@@ -15,8 +15,6 @@ interface UserListProps {
 const UserList = ({ userQueryResult, teachers, onUserClick }: UserListProps) => {
   const { data: users, isLoading } = userQueryResult;
 
-  console.log({ users });
-
   const toggle = () => console.log('implement toggle');
 
   const isTeacher = (user: User) => teachers.some(teacher => teacher.uid === user.uid);
