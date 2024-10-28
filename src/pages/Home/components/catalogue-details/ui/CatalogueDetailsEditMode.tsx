@@ -190,7 +190,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
           </Property>
         </Properties>
         <textarea
-          className='w-full resize-none border-b border-t border-slate-300 p-1 p-2 text-slate-600 outline-none'
+          className='w-full resize-none border-b border-t border-slate-300 p-2 text-slate-600 outline-none'
           placeholder='Écrire un commentaire ...'></textarea>
 
         <SchoolPublicSummaryTextArea
