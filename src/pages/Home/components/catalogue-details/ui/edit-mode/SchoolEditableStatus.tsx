@@ -33,8 +33,7 @@ export default function SchoolEditableStatus({ selectedStatus, onStatusChange }:
             {Object.entries(status).map(([statusType, className]) => (
               <li key={statusType} className='li' dir='rtl'>
                 <label
-                  className={`leading-sm flex w-fit items-center justify-start rounded-full px-3 py-1 text-xs font-bold uppercase ${className}`}
-                >
+                  className={`leading-sm flex w-fit items-center justify-start rounded-full px-3 py-1 text-xs font-bold uppercase ${className}`}>
                   {statusType}
                 </label>
                 <input

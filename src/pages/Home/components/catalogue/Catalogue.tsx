@@ -1,12 +1,11 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
 import { useAddSchool, useGetSchools } from '@schoolApp/pages/Home/hooks/schools.hook';
 import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
 import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/AddSchoolButton';
-import { EditModeContext, useEditMode } from '@schoolApp/shared/context/edit-mode.context';
+import { useEditMode } from '@schoolApp/shared/context/edit-mode.context';
 import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
-import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 
 export function Catalogue() {
   const [selectedStatus, setSelectedStatus] = useStatus();
