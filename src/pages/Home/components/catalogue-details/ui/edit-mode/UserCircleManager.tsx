@@ -24,26 +24,23 @@ const UserList = ({ userQueryResult, teachers, onUserClick }: UserListProps) => 
     return <div>Loading ...</div>;
   }
 
-  if (users) {
-    return (
-      <div className='flex flex-col gap-1'>
-        <span className='bold text-sm font-bold text-slate-600'>Utilisateurs</span>
-        {users.map((user, id) => (
-          <button
-            key={id}
-            onClick={() => onUserClick(user)}
-            className='relative flex w-full items-center gap-2 rounded-md bg-slate-100 p-2'
-          >
-            <span className='relative flex h-7 w-7 shrink-0 overflow-hidden rounded-full' onClick={toggle}>
-              <img className='aspect-square h-full w-full' src={user.photoURL} />
-            </span>
-            <span className='text-slate-700'>{user.displayName}</span>
-            {isTeacher(user) ? <AiOutlineClose className='absolute right-4 cursor-pointer ' /> : null}
-          </button>
-        ))}
-      </div>
-    );
-  }
+  return (
+    <div className='flex flex-col gap-1'>
+      <span className='bold text-sm font-bold text-slate-600'>Utilisateurs</span>
+      {users?.map((user, id) => (
+        <button
+          key={id}
+          onClick={() => onUserClick(user)}
+          className='relative flex w-full items-center gap-2 rounded-md bg-slate-100 p-2'>
+          <span className='relative flex h-7 w-7 shrink-0 overflow-hidden rounded-full' onClick={toggle}>
+            <img className='aspect-square h-full w-full' src={user.photoURL} alt={'Profil picture'} />
+          </span>
+          <span className='text-slate-700'>{user.displayName}</span>
+          {isTeacher(user) ? <AiOutlineClose className='absolute right-4 cursor-pointer ' /> : null}
+        </button>
+      ))}
+    </div>
+  );
 };
 
 interface UserCircleManagerProps {
@@ -52,6 +49,7 @@ interface UserCircleManagerProps {
   onUserClick?: (user: User) => void;
   readonly?: boolean;
 }
+
 export default function UserCircleManager({
   users,
   userQueryResult,
@@ -93,8 +91,7 @@ export default function UserCircleManager({
             <div className='relative w-fit'>
               <button
                 className='z-10 cursor-pointer rounded-full border border-slate-400 bg-slate-200/70 p-2 backdrop-blur-sm hover:bg-slate-300 active:bg-slate-200'
-                onClick={toggle}
-              >
+                onClick={toggle}>
                 <AiOutlinePlus />
               </button>
             </div>
