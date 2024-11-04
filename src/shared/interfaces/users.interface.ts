@@ -10,6 +10,7 @@ export interface User {
   emailVerified: boolean;
   photoURL: string;
   role: UserRole;
+  cursor: string | null;
 }
 
 /**
@@ -38,6 +39,7 @@ export const userConverter: FirestoreDataConverter<User> = {
       email: data.email,
       emailVerified: data.emailVerified,
       role: data.role,
+      cursor: data.cursor,
     };
   },
 };

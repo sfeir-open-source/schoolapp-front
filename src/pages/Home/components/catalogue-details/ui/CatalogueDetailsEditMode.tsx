@@ -1,5 +1,5 @@
 import { GoogleUser } from '../../../../../shared/interfaces/google-user';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { StatusType } from '../../../../../shared/interfaces/filter-status.interface';
 import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
 import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
@@ -7,7 +7,7 @@ import SaveButton from './edit-mode/SaveButton';
 import { useUpdateSchool } from '../../../hooks/schools.hook';
 import CustomInput from '../../../../../shared/components/Input';
 import CatalogueDetailsImage from './edit-mode/CatlogueDetailsImage';
-import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
+import { useGetUser, useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
 import { User } from '@schoolApp/shared/interfaces/users.interface';
 import UserCircleManager from './edit-mode/UserCircleManager';
 import { School } from '@schoolApp/shared/interfaces/schools.interface';
@@ -20,16 +20,17 @@ import {
   AiOutlineUser,
 } from 'react-icons/ai';
 import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
+import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
 
 interface CatalogueDetailsEditModeProps {
   school: School;
-  user: GoogleUser | null;
 }
 
-export default function CatalogueDetailsEditMode({ school, user }: CatalogueDetailsEditModeProps) {
+export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEditModeProps) {
   const [editedSchool, setSchool] = useState(school);
   const [showSaveButton, setShowSaveButton] = useState(false);
   const mutation = useUpdateSchool();
+  const { data: realTimeEdits } = useGetRealTimeEdits();
 
   const userQueryResult = useGetUsers();
 
@@ -69,7 +70,10 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
           <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
         </div>
         <CustomInput
+          realTimeEdits={realTimeEdits}
           size='lg'
+          title='school-title'
+          schoolId={editedSchool.id}
           value={editedSchool.title}
           onInputChange={value => handleInputChange(value, 'title')}
           placeholder='Entrer un titre'
@@ -116,6 +120,9 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
                 value={editedSchool.githubLink}
                 onInputChange={value => handleInputChange(value, 'githubLink')}
                 placeholder='Entrer un lien Github'
+                title='school-github-link'
+                schoolId={school.id}
+                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -130,6 +137,9 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
                 value={editedSchool.driveLink}
                 onInputChange={value => handleInputChange(value, 'driveLink')}
                 placeholder='Entrer un lien Drive'
+                title='school-drive-link'
+                schoolId={school.id}
+                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -146,7 +156,9 @@ export default function CatalogueDetailsEditMode({ school, user }: CatalogueDeta
                 step={0.5}
                 value={editedSchool.duration}
                 onInputChange={value => handleInputChange(value, 'duration')}
-                placeholder='Entrer un lien Github'
+                title='school-duration'
+                schoolId={school.id}
+                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>

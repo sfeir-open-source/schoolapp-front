@@ -8,10 +8,9 @@ import { User } from '@schoolApp/shared/interfaces/users.interface';
 
 interface CatalogueDetailsReadOnlyProps {
   school: School;
-  user: User | null;
 }
 
-export default function CatalogueDetailsReadOnly({ school, user }: CatalogueDetailsReadOnlyProps) {
+export default function CatalogueDetailsReadOnly({ school }: CatalogueDetailsReadOnlyProps) {
   const userQueryResult = useGetUsers();
 
   return (

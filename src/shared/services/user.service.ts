@@ -1,8 +1,19 @@
-import { collection, doc, DocumentSnapshot, getDoc, getDocs, query, QuerySnapshot, setDoc } from 'firebase/firestore';
-import { firestore } from '@schoolApp/core/firebase/firebase.config';
-import { User, userConverter, UserRole } from '@schoolApp/shared/interfaces/users.interface';
 import { UserCredential } from '@firebase/auth';
+import { firestore } from '@schoolApp/core/firebase/firebase.config';
 import { MissingEmailError } from '@schoolApp/shared/errors/user.errors';
+import { User, userConverter, UserRole } from '@schoolApp/shared/interfaces/users.interface';
+import {
+  collection,
+  doc,
+  DocumentSnapshot,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+  QuerySnapshot,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 /**
  * Return all users
@@ -11,12 +22,26 @@ export const getAllUsers = (): Promise<QuerySnapshot<User>> => {
   return getDocs(query(collection(firestore, 'users').withConverter(userConverter)));
 };
 
+export const subscribeToUsers = (callback: (snapshot: QuerySnapshot<User>) => void) => {
+  const userCollection = collection(firestore, 'users').withConverter(userConverter);
+
+  return onSnapshot(userCollection, callback);
+};
 /**
  * Return User corresponding to its sfeir email
  * @param email {string}
  */
 export const getUserByEmail = (email: string): Promise<DocumentSnapshot<User>> => {
   return getDoc(doc(firestore, `users/${email}`).withConverter(userConverter));
+};
+
+/**
+ * Update school attached to an uid
+ * @param email {string}
+ * @param user {Partial<School>}
+ */
+export const updateUser = (email: string, user: Partial<User>) => {
+  return updateDoc(doc(firestore, `users/${email}`).withConverter(userConverter), user);
 };
 
 /**
@@ -39,6 +64,7 @@ export const addUser = async (userCredential: UserCredential): Promise<DocumentS
       emailVerified: userCredential.user.emailVerified,
       photoURL: userCredential.user.photoURL ?? '',
       role: UserRole.STUDENT,
+      cursor: null,
     };
     // Save new user at uid in collection.
     await setDoc(doc(firestore, `users/${newUser.email}`), newUser);
