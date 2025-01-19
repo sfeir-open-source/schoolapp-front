@@ -21,6 +21,7 @@ import {
 } from 'react-icons/ai';
 import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
 import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
+import LevelDropdown from './edit-mode/LevelSelector';
 
 interface CatalogueDetailsEditModeProps {
   school: School;
@@ -95,7 +96,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <CustomInput
-                size='xs'
+                size='sm'
                 value={editedSchool.technology}
                 onInputChange={value => handleInputChange(value, 'technology')}
                 placeholder='Entrer une technologie'
@@ -110,6 +111,10 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <AiOutlineTag />
               <span>Niveau</span>
             </PropertyLabel>
+            <LevelDropdown
+              selectedLevel={editedSchool.level}
+              onSelectChange={value => handleInputChange(value, 'level')}
+            />
           </Property>
           <Property>
             <PropertyLabel>
@@ -118,7 +123,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <CustomInput
-                size='xs'
+                size='sm'
                 value={editedSchool.githubLink}
                 onInputChange={value => handleInputChange(value, 'githubLink')}
                 placeholder='Entrer un lien Github'
@@ -135,7 +140,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <CustomInput
-                size='xs'
+                size='sm'
                 value={editedSchool.driveLink}
                 onInputChange={value => handleInputChange(value, 'driveLink')}
                 placeholder='Entrer un lien Drive'
@@ -152,7 +157,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <CustomInput
-                size='xs'
+                size='sm'
                 type='number'
                 min={0}
                 step={0.5}

@@ -9,7 +9,7 @@ export function PropertiesTitle({ children }: { children: ReactNode }) {
 }
 
 export function Property({ children }: { children: ReactNode }) {
-  return <div className='grid grid-cols-[11rem_1fr] items-center sm:grid-cols-[14rem_1fr]'>{children}</div>;
+  return <div className='grid h-8 grid-cols-[11rem_1fr] items-center sm:grid-cols-[14rem_1fr]'>{children}</div>;
 }
 
 export function PropertyLabel({ children }: { children: ReactNode }) {

@@ -8,6 +8,7 @@ import { User } from './users.interface';
 export interface School {
   id: string;
   technology: string;
+  level: 'beginner' | 'intermediate' | 'advanced';
   title: string;
   publicSummary: string;
   status: StatusType;
@@ -45,6 +46,7 @@ export const schoolConverter: FirestoreDataConverter<School> = {
       id: snapshot.id,
       title: data.title,
       publicSummary: data.publicSummary,
+      level: data.level,
       technology: data.technology,
       status: data.status,
       image: data.image,

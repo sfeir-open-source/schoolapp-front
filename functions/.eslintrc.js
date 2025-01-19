@@ -21,8 +21,9 @@ module.exports = {
     '/lib/**/*', // Ignore built files.
     '/generated/**/*', // Ignore generated files.
   ],
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'react'],
   rules: {
+    'react/prop-types': 'off',
     quotes: ['error', 'single'],
     'import/no-unresolved': 0,
     // 'indent': ['error', 2],
@@ -32,5 +33,10 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'no-tabs': 'off',
     semi: ['error', 'always'],
+  },
+  settings: {
+    react: {
+      version: 'detect', // Détecte automatiquement la version de React
+    },
   },
 };
