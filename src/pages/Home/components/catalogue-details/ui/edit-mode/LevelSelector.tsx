@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 type Level = 'beginner' | 'intermediate' | 'advanced';
 interface Props {
   selectedLevel: string;
-  onSelectChange?: (value: string) => void;
+  onSelectChange?: (value: Level) => void;
 }
 export default function LevelDropdown({ selectedLevel, onSelectChange }: Props) {
   const options: { value: Level; label: string }[] = [

@@ -22,6 +22,7 @@ import {
 import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
 import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
 import LevelDropdown from './edit-mode/LevelSelector';
+import { DatePicker } from './edit-mode/DatePicker';
 
 interface CatalogueDetailsEditModeProps {
   school: School;
@@ -35,7 +36,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
 
   const userQueryResult = useGetUsers();
 
-  const handleInputChange = (value: string, property: keyof School) => {
+  const handleInputChange = <K extends keyof School>(property: K, value: School[K]) => {
     setShowSaveButton(true);
     setSchool({ ...editedSchool, [property]: value });
   };
@@ -76,7 +77,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
           title='school-title'
           schoolId={editedSchool.id}
           value={editedSchool.title}
-          onInputChange={value => handleInputChange(value, 'title')}
+          onInputChange={value => handleInputChange('title', value)}
           placeholder='Entrer un titre'
         />
         <Properties>
@@ -98,7 +99,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <CustomInput
                 size='sm'
                 value={editedSchool.technology}
-                onInputChange={value => handleInputChange(value, 'technology')}
+                onInputChange={value => handleInputChange('technology', value)}
                 placeholder='Entrer une technologie'
                 title='school-technology'
                 schoolId={school.id}
@@ -113,7 +114,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <LevelDropdown
               selectedLevel={editedSchool.level}
-              onSelectChange={value => handleInputChange(value, 'level')}
+              onSelectChange={value => handleInputChange('level', value)}
             />
           </Property>
           <Property>
@@ -125,7 +126,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <CustomInput
                 size='sm'
                 value={editedSchool.githubLink}
-                onInputChange={value => handleInputChange(value, 'githubLink')}
+                onInputChange={value => handleInputChange('githubLink', value)}
                 placeholder='Entrer un lien Github'
                 title='school-github-link'
                 schoolId={school.id}
@@ -142,7 +143,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <CustomInput
                 size='sm'
                 value={editedSchool.driveLink}
-                onInputChange={value => handleInputChange(value, 'driveLink')}
+                onInputChange={value => handleInputChange('driveLink', value)}
                 placeholder='Entrer un lien Drive'
                 title='school-drive-link'
                 schoolId={school.id}
@@ -162,7 +163,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
                 min={0}
                 step={0.5}
                 value={editedSchool.duration}
-                onInputChange={value => handleInputChange(value, 'duration')}
+                onInputChange={value => handleInputChange('duration', Number(value))}
                 title='school-duration'
                 schoolId={school.id}
                 realTimeEdits={realTimeEdits}
@@ -181,7 +182,10 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <AiOutlineCalendar />
               <span>Dernière session</span>
             </PropertyLabel>
-            <PropertyValue>TODO</PropertyValue>
+            <DatePicker
+              selectedDate={editedSchool.lastSession}
+              onDateSelect={value => handleInputChange('lastSession', value)}
+            />
           </Property>
           <Property>
             <PropertyLabel>
@@ -217,7 +221,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
 
         <SchoolPublicSummaryTextArea
           publicSummary={editedSchool.publicSummary}
-          onTextAreaChange={value => handleInputChange(value, 'publicSummary')}
+          onTextAreaChange={value => handleInputChange('publicSummary', value)}
         />
       </div>
     </div>
