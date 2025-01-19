@@ -15,7 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
+      "@/*": ["./src/*"],
       "@schoolApp/assets/*": ["src/assets/*"],
       "@schoolApp/core/*": ["src/core/*"],
       "@schoolApp/pages/*": ["src/pages/*"],

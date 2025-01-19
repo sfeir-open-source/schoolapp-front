@@ -37,7 +37,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ visible, setVisib
       className='fixed left-0 right-0 top-0 z-50 flex h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black bg-opacity-60'
     >
       <div className='relative flex h-full w-full max-w-lg items-center p-4'>
-        <div ref={modalRef} className='relative rounded-lg bg-white p-4 text-center shadow sm:p-5 dark:bg-gray-800'>
+        <div ref={modalRef} className='relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5'>
           <button
             onClick={handleClose}
             type='button'

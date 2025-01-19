@@ -93,21 +93,23 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <AiOutlineCode />
               <span>Technologies</span>
             </PropertyLabel>
-            <PropertyValue>TODO</PropertyValue>
-          </Property>
-          <Property>
-            <PropertyLabel>
-              <AiOutlineTag />
-              <span>Prérequis</span>
-            </PropertyLabel>
-            <PropertyValue>TODO </PropertyValue>
+            <PropertyValue>
+              <CustomInput
+                size='xs'
+                value={editedSchool.technology}
+                onInputChange={value => handleInputChange(value, 'technology')}
+                placeholder='Entrer une technologie'
+                title='school-technology'
+                schoolId={school.id}
+                realTimeEdits={realTimeEdits}
+              />
+            </PropertyValue>
           </Property>
           <Property>
             <PropertyLabel>
               <AiOutlineTag />
               <span>Niveau</span>
             </PropertyLabel>
-            <PropertyValue>TODO </PropertyValue>
           </Property>
           <Property>
             <PropertyLabel>
