@@ -18,6 +18,7 @@ import {
   AiOutlineLink,
   AiOutlineTag,
   AiOutlineUser,
+  AiFillPushpin,
 } from 'react-icons/ai';
 import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
 import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
@@ -37,6 +38,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
   const userQueryResult = useGetUsers();
 
   const handleInputChange = <K extends keyof School>(property: K, value: School[K]) => {
+    console.log(editedSchool, value, property);
     setShowSaveButton(true);
     setSchool({ ...editedSchool, [property]: value });
   };
@@ -175,16 +177,34 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <AiOutlineCalendar />
               <span>Dernière mise à jour</span>
             </PropertyLabel>
-            <PropertyValue>TODO</PropertyValue>
+            <DatePicker
+              selectedDate={editedSchool.lastUpdate}
+              onDateSelect={value => handleInputChange('lastUpdate', value)}
+            />{' '}
           </Property>
           <Property>
             <PropertyLabel>
               <AiOutlineCalendar />
-              <span>Dernière session</span>
+              <span>Date de La dernière session</span>
             </PropertyLabel>
             <DatePicker
               selectedDate={editedSchool.lastSession}
               onDateSelect={value => handleInputChange('lastSession', value)}
+            />
+          </Property>
+          <Property>
+            <PropertyLabel>
+              <AiFillPushpin />
+              <span>Lieu de La dernière session</span>
+            </PropertyLabel>
+            <CustomInput
+              size='sm'
+              value={editedSchool.lastSessionLocation}
+              onInputChange={value => handleInputChange('lastSessionLocation', value)}
+              placeholder='Entrer un lieu'
+              title='school-drive-last-session-location'
+              schoolId={school.id}
+              realTimeEdits={realTimeEdits}
             />
           </Property>
           <Property>

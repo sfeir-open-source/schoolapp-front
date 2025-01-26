@@ -1,7 +1,6 @@
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import {
   DocumentData,
-  FieldValue,
   FirestoreDataConverter,
   QueryDocumentSnapshot,
   SnapshotOptions,
@@ -16,6 +15,8 @@ export interface School {
   id: string;
   technology: string;
   lastSession: Timestamp;
+  lastSessionLocation: string;
+  lastUpdate: Timestamp;
   level: 'beginner' | 'intermediate' | 'advanced';
   title: string;
   publicSummary: string;
@@ -54,6 +55,8 @@ export const schoolConverter: FirestoreDataConverter<School> = {
       id: snapshot.id,
       title: data.title,
       lastSession: data.lastSession,
+      lastUpdate: data.lastUpdate,
+      lastSessionLocation: data.lastSessionLocation,
       publicSummary: data.publicSummary,
       level: data.level,
       technology: data.technology,
