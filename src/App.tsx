@@ -1,4 +1,4 @@
-import { CatalogueDetails } from './pages/Home/components/catalogue-details/CatalogueDetails';
+import { SchoolPage } from './pages/Home/components/school/SchoolPage';
 import Home from './pages/Home/Home';
 import { Catalogue } from './pages/Home/components/catalogue/Catalogue';
 import Login from './pages/Login/Login';
@@ -15,7 +15,7 @@ export default function App() {
         <Route path='/' element={<Login />}></Route>
         <Route element={<ProtectedRoutes />}>
           <Route path='/catalogue' element={<Home />}>
-            <Route path='/catalogue/:id' element={<CatalogueDetails />}></Route>
+            <Route path='/catalogue/:id' element={<SchoolPage />}></Route>
             <Route path='/catalogue' element={<Catalogue />}></Route>
           </Route>
         </Route>

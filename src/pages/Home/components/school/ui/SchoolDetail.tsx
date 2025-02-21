@@ -1,5 +1,4 @@
 import Input from '@/components/ui/input';
-import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
 import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
 import { School } from '@schoolApp/shared/interfaces/schools.interface';
 import { User } from '@schoolApp/shared/interfaces/users.interface';
@@ -24,15 +23,15 @@ import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
 import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
 import UserCircleManager from './edit-mode/UserCircleManager';
 
-interface CatalogueDetailsEditModeProps {
+interface SchoolProps {
   school: School;
+  editMode: boolean;
 }
 
-export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEditModeProps) {
+export default function SchoolDetail({ school, editMode }: SchoolProps) {
   const [editedSchool, setSchool] = useState(school);
   const [showSaveButton, setShowSaveButton] = useState(false);
   const mutation = useUpdateSchool();
-  const { data: realTimeEdits } = useGetRealTimeEdits();
 
   const userQueryResult = useGetUsers();
 
@@ -73,6 +72,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
           <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
         </div>
         <Input
+          readOnly={editMode}
           size='lg'
           value={editedSchool.title}
           onInputChange={value => handleInputChange('title', value)}
@@ -95,6 +95,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <Input
+                readOnly={editMode}
                 size='sm'
                 value={editedSchool.technology}
                 onInputChange={value => handleInputChange('technology', value)}
@@ -108,6 +109,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Niveau</span>
             </PropertyLabel>
             <LevelDropdown
+              editMode={editMode}
               selectedLevel={editedSchool.level}
               onSelectChange={value => handleInputChange('level', value)}
             />
@@ -119,6 +121,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <Input
+                readOnly={editMode}
                 size='sm'
                 value={editedSchool.githubLink}
                 onInputChange={value => handleInputChange('githubLink', value)}
@@ -133,6 +136,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <Input
+                readOnly={editMode}
                 size='sm'
                 value={editedSchool.driveLink}
                 onInputChange={value => handleInputChange('driveLink', value)}
@@ -147,6 +151,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyLabel>
             <PropertyValue>
               <Input
+                readOnly={editMode}
                 size='sm'
                 type='number'
                 min={0}
@@ -182,6 +187,7 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Lieu de La dernière session</span>
             </PropertyLabel>
             <Input
+              readOnly={editMode}
               size='sm'
               value={editedSchool.lastSessionLocation}
               onInputChange={value => handleInputChange('lastSessionLocation', value)}
