@@ -1,29 +1,28 @@
-import { GoogleUser } from '../../../../../shared/interfaces/google-user';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { StatusType } from '../../../../../shared/interfaces/filter-status.interface';
-import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
-import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
-import SaveButton from './edit-mode/SaveButton';
-import { useUpdateSchool } from '../../../hooks/schools.hook';
-import CustomInput from '../../../../../shared/components/Input';
-import CatalogueDetailsImage from './edit-mode/CatlogueDetailsImage';
-import { useGetUser, useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
-import { User } from '@schoolApp/shared/interfaces/users.interface';
-import UserCircleManager from './edit-mode/UserCircleManager';
+import Input from '@/components/ui/input';
+import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
+import { useGetUsers } from '@schoolApp/pages/Login/hooks/users.hook';
 import { School } from '@schoolApp/shared/interfaces/schools.interface';
+import { User } from '@schoolApp/shared/interfaces/users.interface';
+import { useState } from 'react';
 import {
   AiFillClockCircle,
+  AiFillPushpin,
   AiOutlineCalendar,
   AiOutlineCode,
   AiOutlineLink,
   AiOutlineTag,
   AiOutlineUser,
-  AiFillPushpin,
 } from 'react-icons/ai';
-import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
-import { useGetRealTimeEdits } from '@schoolApp/pages/Home/hooks/real-time-edits.hook';
-import LevelDropdown from './edit-mode/LevelSelector';
+import { StatusType } from '../../../../../shared/interfaces/filter-status.interface';
+import { useUpdateSchool } from '../../../hooks/schools.hook';
+import CatalogueDetailsImage from './edit-mode/CatlogueDetailsImage';
 import { DatePicker } from './edit-mode/DatePicker';
+import LevelDropdown from './edit-mode/LevelSelector';
+import { Properties, Property, PropertyLabel, PropertyValue } from './edit-mode/Properties';
+import SaveButton from './edit-mode/SaveButton';
+import SchoolEditableStatus from './edit-mode/SchoolEditableStatus';
+import SchoolPublicSummaryTextArea from './edit-mode/SchoolPublicSummaryTextArea';
+import UserCircleManager from './edit-mode/UserCircleManager';
 
 interface CatalogueDetailsEditModeProps {
   school: School;
@@ -69,15 +68,12 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
     <div className='mt-[4.4rem]'>
       <CatalogueDetailsImage src={editedSchool.image} alt={`${editedSchool.title}_image`} />
 
-      <div className='relative flex h-[100vh] flex-col gap-4 text-slate-600 sm:px-12 md:px-28 lg:px-40 xl:px-[22rem]'>
+      <div className='relative flex h-[100vh] flex-col gap-4 pt-4 text-slate-600 sm:px-12 md:px-28 lg:px-40 xl:px-[22rem]'>
         <div className='fixed right-0 top-[5.25rem] z-50 mr-4'>
           <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
         </div>
-        <CustomInput
-          realTimeEdits={realTimeEdits}
+        <Input
           size='lg'
-          title='school-title'
-          schoolId={editedSchool.id}
           value={editedSchool.title}
           onInputChange={value => handleInputChange('title', value)}
           placeholder='Entrer un titre'
@@ -98,14 +94,11 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Technologies</span>
             </PropertyLabel>
             <PropertyValue>
-              <CustomInput
+              <Input
                 size='sm'
                 value={editedSchool.technology}
                 onInputChange={value => handleInputChange('technology', value)}
                 placeholder='Entrer une technologie'
-                title='school-technology'
-                schoolId={school.id}
-                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -125,14 +118,11 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Github</span>
             </PropertyLabel>
             <PropertyValue>
-              <CustomInput
+              <Input
                 size='sm'
                 value={editedSchool.githubLink}
                 onInputChange={value => handleInputChange('githubLink', value)}
                 placeholder='Entrer un lien Github'
-                title='school-github-link'
-                schoolId={school.id}
-                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -142,14 +132,11 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Drive</span>
             </PropertyLabel>
             <PropertyValue>
-              <CustomInput
+              <Input
                 size='sm'
                 value={editedSchool.driveLink}
                 onInputChange={value => handleInputChange('driveLink', value)}
                 placeholder='Entrer un lien Drive'
-                title='school-drive-link'
-                schoolId={school.id}
-                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -159,16 +146,13 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <span>Durée</span>
             </PropertyLabel>
             <PropertyValue>
-              <CustomInput
+              <Input
                 size='sm'
                 type='number'
                 min={0}
                 step={0.5}
                 value={editedSchool.duration}
                 onInputChange={value => handleInputChange('duration', Number(value))}
-                title='school-duration'
-                schoolId={school.id}
-                realTimeEdits={realTimeEdits}
               />
             </PropertyValue>
           </Property>
@@ -197,14 +181,11 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
               <AiFillPushpin />
               <span>Lieu de La dernière session</span>
             </PropertyLabel>
-            <CustomInput
+            <Input
               size='sm'
               value={editedSchool.lastSessionLocation}
               onInputChange={value => handleInputChange('lastSessionLocation', value)}
               placeholder='Entrer un lieu'
-              title='school-drive-last-session-location'
-              schoolId={school.id}
-              realTimeEdits={realTimeEdits}
             />
           </Property>
           <Property>
@@ -234,11 +215,6 @@ export default function CatalogueDetailsEditMode({ school }: CatalogueDetailsEdi
             </PropertyValue>
           </Property>
         </Properties>
-        <textarea
-          className='w-full resize-none border-b border-t border-slate-300 p-1 p-2 text-slate-600 outline-none'
-          placeholder='Écrire un commentaire ...'
-        ></textarea>
-
         <SchoolPublicSummaryTextArea
           publicSummary={editedSchool.publicSummary}
           onTextAreaChange={value => handleInputChange('publicSummary', value)}

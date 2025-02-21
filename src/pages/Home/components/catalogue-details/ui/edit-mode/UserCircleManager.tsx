@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick';
-import CustomInput from '../../../../../../shared/components/Input';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { User } from '@schoolApp/shared/interfaces/users.interface';
 import { UseQueryResult } from '@tanstack/react-query';
+import Input from '@/components/ui/input';
 
 interface UserListProps {
   userQueryResult: UseQueryResult<User[]>;
@@ -102,12 +102,7 @@ export default function UserCircleManager({
         {isOpen && (
           <>
             <div className='left0 absolute top-10 z-50 flex w-60 transform flex-col gap-4 rounded-lg border border-gray-300 bg-white p-3 shadow-lg dark:bg-gray-700'>
-              <CustomInput
-                size='sm'
-                value=''
-                onInputChange={handleInputChange}
-                placeholder='Rechercher un utilisateur'
-              />
+              <Input size='sm' value='' onInputChange={handleInputChange} placeholder='Rechercher un utilisateur' />
               <UserList userQueryResult={userQueryResult} teachers={users} onUserClick={handleUserClick} />
             </div>
           </>

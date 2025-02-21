@@ -13,7 +13,7 @@ export default function LevelDropdown({ selectedLevel, onSelectChange }: Props) 
   ];
   return (
     <Select defaultValue={selectedLevel} onValueChange={onSelectChange}>
-      <SelectTrigger className='h-select-sm h-8 text-sm'>
+      <SelectTrigger>
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

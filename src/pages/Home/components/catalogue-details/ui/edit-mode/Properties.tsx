@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export function Properties({ children }: { children: ReactNode }) {
-  return <div className='ml-4 flex w-full flex-col gap-2'>{children}</div>;
+  return <div className='ml-4 flex w-full flex-col gap-4'>{children}</div>;
 }
 
 export function PropertiesTitle({ children }: { children: ReactNode }) {
