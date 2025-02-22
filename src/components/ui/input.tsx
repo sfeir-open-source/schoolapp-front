@@ -9,7 +9,9 @@ interface InputProps {
   min?: number;
   step?: number;
   placeholder?: string;
-  readOnly?: boolean; // Nouvelle prop
+  readOnly?: boolean;
+  left?: React.ReactNode;
+  right?: React.ReactNode;
 }
 
 export default function Input({
@@ -21,6 +23,8 @@ export default function Input({
   placeholder,
   size = 'md',
   readOnly = false,
+  left,
+  right,
 }: InputProps) {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!readOnly) {
@@ -36,24 +40,41 @@ export default function Input({
   });
 
   const inputClasses = clsx(
-    `${sizeClasses} flex w-full rounded-md bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50`,
-    {
-      'border border-input': !readOnly,
-      'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2': !readOnly,
-      'border-0': readOnly,
-    }
+    'h-full flex-1 bg-transparent text-sm placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed',
+    sizeClasses
   );
 
   return (
-    <input
-      type={type}
-      min={min}
-      step={step}
-      placeholder={placeholder}
-      className={inputClasses}
-      value={value}
-      onChange={handleInputChange}
-      readOnly={readOnly}
-    />
+    <div
+      className={clsx(
+        'flex h-9 w-full flex-row items-center rounded-md border border-input bg-transparent px-3 shadow-sm transition-colors focus-within:ring-1 focus-within:ring-ring disabled:opacity-50',
+        {
+          'border border-input': !readOnly,
+          'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2': !readOnly,
+          'border-0': readOnly,
+        }
+      )}
+    >
+      {left && (
+        <div className='flex h-full items-center text-muted-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0'>
+          {left}
+        </div>
+      )}
+      <input
+        type={type}
+        min={min}
+        step={step}
+        placeholder={placeholder}
+        className={inputClasses}
+        value={value}
+        onChange={handleInputChange}
+        readOnly={readOnly}
+      />
+      {right && (
+        <div className='flex h-full items-center text-muted-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0'>
+          {right}
+        </div>
+      )}
+    </div>
   );
 }

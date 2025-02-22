@@ -15,7 +15,7 @@ export default function CatalogueSchool({ school, editMode, onDelete }: Catalogu
   const [visible, setVisible] = useState<boolean>(false);
 
   return (
-    <>
+    <div className='transform transition-transform duration-200 hover:-translate-y-1'>
       <Link
         to={`/catalogue/${school.id}`}
         key={school.id}
@@ -41,6 +41,6 @@ export default function CatalogueSchool({ school, editMode, onDelete }: Catalogu
         school={school}
         onConfirm={() => onDelete(school.id)}
       />
-    </>
+    </div>
   );
 }

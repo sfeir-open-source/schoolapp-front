@@ -1,23 +1,22 @@
-import { useContext, useState } from 'react';
+import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/AddSchoolButton';
+import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
+import { useAddSchool, useGetSchools } from '@schoolApp/pages/Home/hooks/schools.hook';
+import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
+import { useEditMode } from '@schoolApp/shared/context/edit-mode.context';
+import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
+import { useState } from 'react';
 import Filter from './components/filter/Filter';
 import Schools from './components/schools/Schools';
-import { useAddSchool, useGetSchools } from '@schoolApp/pages/Home/hooks/schools.hook';
-import { useStatusRecord } from '@schoolApp/pages/Home/hooks/filter-status.hook';
-import AddSchoolButton from '@schoolApp/pages/Home/components/add-school-button/AddSchoolButton';
-import { EditModeContext, useEditMode } from '@schoolApp/shared/context/edit-mode.context';
-import { useStatus } from '@schoolApp/pages/Home/hooks/status.hook';
-import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
-import { useQueryClient } from '@tanstack/react-query';
 
 export function Catalogue() {
   const [selectedStatus, setSelectedStatus] = useStatus();
   const [searchTerm, setSearchTerm] = useState('');
   const [recordStatus] = useStatusRecord();
-  const { data, isError, isLoading } = useGetSchools(selectedStatus);
+  const { schools, isError, isLoading } = useGetSchools(selectedStatus, searchTerm);
   const { editMode } = useEditMode();
   const addSchool = useAddSchool();
 
-  const handleStatusChange = (newSelectedStatus: string[]) => setSelectedStatus(newSelectedStatus);
+  const handleStatusChange = (newSelectedStatus: StatusType[]) => setSelectedStatus(newSelectedStatus);
   const handleSearchTermChange = (searchTerm: string) => setSearchTerm(searchTerm);
   const handleAddSchool = () => addSchool.mutate();
 
@@ -33,7 +32,7 @@ export function Catalogue() {
         />
         <AddSchoolButton editMode={editMode} onClick={handleAddSchool} />
       </div>
-      <Schools schools={data} isError={isError} isLoading={isLoading} />
+      <Schools schools={schools} isError={isError} isLoading={isLoading} />
     </div>
   );
 }

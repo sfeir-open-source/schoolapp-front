@@ -1,3 +1,4 @@
+import { getFilteredSchools } from '@/shared/helpers/schools.helpers';
 import { School } from '@schoolApp/shared//interfaces/schools.interface';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
 import {
@@ -18,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
  * Hook to fetch schools with selected status
  * @param status {StatusType[]}
  */
-export const useGetSchools = (status: StatusType[]) => {
+export const useGetSchools = (status: StatusType[], searchTerm: string) => {
   const queryClient = useQueryClient();
 
   useEffect(
@@ -30,13 +31,19 @@ export const useGetSchools = (status: StatusType[]) => {
     []
   );
 
-  return useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryFn: async () => {
       const schools = await getAllSchools(status);
       return schools.docs.map((school: QueryDocumentSnapshot<School>) => school.data());
     },
     queryKey: ['schools', status],
   });
+
+  return {
+    schools: getFilteredSchools(data, searchTerm),
+    isError,
+    isLoading,
+  };
 };
 
 /**
