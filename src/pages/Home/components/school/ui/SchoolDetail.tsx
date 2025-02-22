@@ -227,7 +227,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
         <SchoolPublicSummaryTextArea
           publicSummary={editedSchool.publicSummary}
           onTextAreaChange={value => handleInputChange('publicSummary', value)}
-          editMode={editMode}
+          editMode={!editMode}
         />
       </div>
     </div>
