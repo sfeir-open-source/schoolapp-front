@@ -1,6 +1,6 @@
 import { firestore } from '@schoolApp/core/firebase/firebase.config';
 import { StatusType } from '@schoolApp/shared/interfaces/filter-status.interface';
-import { School, schoolConverter } from '@schoolApp/shared/interfaces/schools.interface';
+import { School, schoolConverter, SchoolWithoutId } from '@schoolApp/shared/interfaces/schools.interface';
 import {
   addDoc,
   collection,
@@ -11,6 +11,7 @@ import {
   onSnapshot,
   query,
   QuerySnapshot,
+  Timestamp,
   updateDoc,
   where,
 } from 'firebase/firestore';
@@ -71,7 +72,7 @@ export const deleteSchool = (uid: string) => {
 /**
  * Empty school default object
  */
-const EMPTY_SCHOOL: Partial<School> = {
+const EMPTY_SCHOOL: SchoolWithoutId = {
   title: 'Empty School',
   image: 'default-school.png',
   publicSummary: 'empty description',
@@ -81,7 +82,12 @@ const EMPTY_SCHOOL: Partial<School> = {
   document: '',
   githubLink: '',
   teachers: [],
-  status: 'proposal',
   referents: [],
+  status: 'proposal',
+  technology: '',
+  lastSession: Timestamp.fromDate(new Date()),
+  lastSessionLocation: '',
+  lastUpdate: Timestamp.fromDate(new Date()),
+  level: 'beginner',
   driveLink: '',
 };

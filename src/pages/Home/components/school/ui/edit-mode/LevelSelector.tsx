@@ -17,11 +17,11 @@ export default function LevelDropdown({ selectedLevel, onSelectChange, editMode 
   ];
 
   const readOnlyClasses = clsx({
-    '!cursor-default !text-slate-600 !opacity-100 border-0': editMode,
+    '!cursor-default !text-slate-600 !opacity-100 border-0': !editMode,
   });
 
   return (
-    <Select defaultValue={selectedLevel} onValueChange={onSelectChange} disabled={editMode}>
+    <Select defaultValue={selectedLevel} onValueChange={onSelectChange} disabled={!editMode}>
       <SelectTrigger className={readOnlyClasses}>
         <SelectValue />
         {!editMode && (

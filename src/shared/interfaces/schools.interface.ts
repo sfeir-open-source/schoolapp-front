@@ -32,6 +32,8 @@ export interface School {
   referents: User[];
 }
 
+export type SchoolWithoutId = Omit<School, 'id'>;
+
 /**
  * School converter for Firestore
  */

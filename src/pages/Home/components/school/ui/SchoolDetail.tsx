@@ -71,7 +71,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
           <SaveButton isShown={showSaveButton} onButtonClick={handleSaveButtonClick} />
         </div>
         <Input
-          readOnly={editMode}
+          readOnly={!editMode}
           size='lg'
           value={editedSchool.title}
           onInputChange={value => handleInputChange('title', value)}
@@ -94,7 +94,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             </PropertyLabel>
             <PropertyValue>
               <Input
-                readOnly={editMode}
+                readOnly={!editMode}
                 size='sm'
                 value={editedSchool.technology}
                 onInputChange={value => handleInputChange('technology', value)}
@@ -120,7 +120,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             </PropertyLabel>
             <PropertyValue>
               <Input
-                readOnly={editMode}
+                readOnly={!editMode}
                 size='sm'
                 value={editedSchool.githubLink}
                 onInputChange={value => handleInputChange('githubLink', value)}
@@ -135,7 +135,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             </PropertyLabel>
             <PropertyValue>
               <Input
-                readOnly={editMode}
+                readOnly={!editMode}
                 size='sm'
                 value={editedSchool.driveLink}
                 onInputChange={value => handleInputChange('driveLink', value)}
@@ -150,7 +150,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             </PropertyLabel>
             <PropertyValue>
               <Input
-                readOnly={editMode}
+                readOnly={!editMode}
                 size='sm'
                 type='number'
                 min={0}
@@ -168,7 +168,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             <DatePicker
               selectedDate={editedSchool.lastUpdate}
               onDateSelect={value => handleInputChange('lastUpdate', value)}
-              readOnly={editMode}
+              readOnly={!editMode}
             />{' '}
           </Property>
           <Property>
@@ -179,7 +179,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             <DatePicker
               selectedDate={editedSchool.lastSession}
               onDateSelect={value => handleInputChange('lastSession', value)}
-              readOnly={editMode}
+              readOnly={!editMode}
             />
           </Property>
           <Property>
@@ -188,7 +188,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
               <span>Lieu de La dernière session</span>
             </PropertyLabel>
             <Input
-              readOnly={editMode}
+              readOnly={!editMode}
               size='sm'
               value={editedSchool.lastSessionLocation}
               onInputChange={value => handleInputChange('lastSessionLocation', value)}
@@ -205,7 +205,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
                 users={editedSchool.referents}
                 userQueryResult={userQueryResult}
                 onUserClick={user => handleUserClick(user, 'referents')}
-                readonly={editMode}
+                readonly={!editMode}
               />
             </PropertyValue>
           </Property>
@@ -219,7 +219,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
                 users={editedSchool.teachers}
                 userQueryResult={userQueryResult}
                 onUserClick={user => handleUserClick(user, 'teachers')}
-                readonly={editMode}
+                readonly={!editMode}
               />
             </PropertyValue>
           </Property>
