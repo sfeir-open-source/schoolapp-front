@@ -36,7 +36,6 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
   const userQueryResult = useGetUsers();
 
   const handleInputChange = <K extends keyof School>(property: K, value: School[K]) => {
-    console.log(editedSchool, value, property);
     setShowSaveButton(true);
     setSchool({ ...editedSchool, [property]: value });
   };
@@ -169,6 +168,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             <DatePicker
               selectedDate={editedSchool.lastUpdate}
               onDateSelect={value => handleInputChange('lastUpdate', value)}
+              readOnly={editMode}
             />{' '}
           </Property>
           <Property>
@@ -179,6 +179,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
             <DatePicker
               selectedDate={editedSchool.lastSession}
               onDateSelect={value => handleInputChange('lastSession', value)}
+              readOnly={editMode}
             />
           </Property>
           <Property>
@@ -204,6 +205,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
                 users={editedSchool.referents}
                 userQueryResult={userQueryResult}
                 onUserClick={user => handleUserClick(user, 'referents')}
+                readonly={editMode}
               />
             </PropertyValue>
           </Property>
@@ -217,6 +219,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
                 users={editedSchool.teachers}
                 userQueryResult={userQueryResult}
                 onUserClick={user => handleUserClick(user, 'teachers')}
+                readonly={editMode}
               />
             </PropertyValue>
           </Property>
@@ -224,6 +227,7 @@ export default function SchoolDetail({ school, editMode }: SchoolProps) {
         <SchoolPublicSummaryTextArea
           publicSummary={editedSchool.publicSummary}
           onTextAreaChange={value => handleInputChange('publicSummary', value)}
+          editMode={editMode}
         />
       </div>
     </div>
