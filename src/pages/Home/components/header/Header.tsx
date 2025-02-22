@@ -3,6 +3,7 @@ import { AiFillEdit, AiFillEye } from 'react-icons/ai';
 import { MouseEventHandler } from 'react';
 import { auth } from '@schoolApp/core/firebase/firebase.config';
 import Button from '@schoolApp/shared/components/Button';
+import EditModeToggle from './EditModeToggle';
 
 interface HeaderProps {
   editMode: boolean;
@@ -27,17 +28,10 @@ export default function Header({ editMode, toggleEditMode }: HeaderProps) {
         </div>
       </Link>
 
+      <EditModeToggle />
+
       <div className='flex items-center gap-4 lg:order-1'>
         <div className='flex items-center gap-2'>
-          {editMode ? (
-            <button onClick={toggleEditMode}>
-              <AiFillEdit />
-            </button>
-          ) : (
-            <button onClick={toggleEditMode}>
-              <AiFillEye size={20} />
-            </button>
-          )}
           <span className='hidden md:flex'>{user?.displayName}</span>
           <div>
             <img className='w-7 rounded-full' src={user?.photoURL ?? ''} alt={'User profile picture'} />
